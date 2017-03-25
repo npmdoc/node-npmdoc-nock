@@ -46,7 +46,7 @@
     font-weight: bold;
 }
 </style>
-<h1>api-documentation for
+<h1>api documentation for
     <a
 
         href="https://github.com/node-nock/nock#readme"
@@ -2616,8 +2616,8 @@ debug(&#x27;interceptor identified, starting mocking&#x27;);
   // When the writable side finishes, then flush out anything remaining.
   this.once(&#x27;prefinish&#x27;, function() {
     if (typeof this._flush === &#x27;function&#x27;)
-      this._flush(function(er, data) {
-        done(stream, er, data);
+      this._flush(function(er) {
+        done(stream, er);
       });
     else
       done(stream);
