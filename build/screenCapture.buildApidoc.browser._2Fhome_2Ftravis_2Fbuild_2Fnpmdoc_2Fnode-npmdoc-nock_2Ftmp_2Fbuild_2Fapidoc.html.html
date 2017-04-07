@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/node-nock/nock#readme"
-
-    >nock (v9.0.11)</a>
+    <a href="https://github.com/node-nock/nock#readme">nock (v9.0.11)</a>
 </h1>
 <h4>HTTP Server mocking for Node.js</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.nock">module nock</a><ol>
 
@@ -932,7 +925,7 @@
     <li>description and source-code<pre class="apidocCodePre">function activate() {
 
   if(originalClientRequest) {
-    throw new Error(&#x27;Nock already active&#x27;);
+    throw new Error('Nock already active');
   }
 
   overrideClientRequest();
@@ -944,14 +937,14 @@
     var req,
         res;
 
-    if (typeof options === &#x27;string&#x27;) {
+    if (typeof options === 'string') {
       options = parse(options);
     }
     options.proto = proto;
 
     var interceptors = interceptorsFor(options)
 
-    if (isOn() &#x26;&#x26; interceptors) {
+    if (isOn() &amp;&amp; interceptors) {
       var matches = false,
           allowUnmocked = false;
 
@@ -963,8 +956,8 @@
         return interceptor.options.allowUnmocked;
       });
 
-      if (! matches &#x26;&#x26; allowUnmocked) {
-        if (proto === &#x27;https&#x27;) {
+      if (! matches &amp;&amp; allowUnmocked) {
+        if (proto === 'https') {
           var ClientRequest = http.ClientRequest;
           http.ClientRequest = originalClientRequest;
           req = overriddenRequest(options, callback);
@@ -972,7 +965,7 @@
         } else {
           req = overriddenRequest(options, callback);
         }
-        globalEmitter.emit(&#x27;no match&#x27;, req);
+        globalEmitter.emit('no match', req);
         return req;
       }
 
@@ -982,11 +975,11 @@
 
       res = RequestOverrider(req, options, interceptors, remove);
       if (callback) {
-        res.on(&#x27;response&#x27;, callback);
+        res.on('response', callback);
       }
       return req;
     } else {
-      globalEmitter.emit(&#x27;no match&#x27;, options);
+      globalEmitter.emit('no match', options);
       if (isOff() || isEnabledForNetConnect(options)) {
         return overriddenRequest(options, callback);
       } else {
@@ -1044,9 +1037,9 @@
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function Back(fixtureName, options, nockedFn) {
   if(!Back.fixtures) {
-    throw new Error(  &#x27;Back requires nock.back.fixtures to be set\n&#x27; +
-                      &#x27;Ex:\n&#x27; +
-                      &#x27;\trequire(nock).back.fixtures = \&#x27;/path/to/fixures/\&#x27;&#x27;);
+    throw new Error(  'Back requires nock.back.fixtures to be set\n' +
+                      'Ex:\n' +
+                      '\trequire(nock).back.fixtures = \'/path/to/fixures/\'');
   }
 
   if( arguments.length === 2 ) {
@@ -1064,7 +1057,7 @@
     _mode.finish(fixture, options, context);
   };
 
-  debug(&#x27;context:&#x27;, context);
+  debug('context:', context);
 
   nockedFn.call(context, nockDone);
 }</pre></li>
@@ -1120,16 +1113,16 @@
 
     var nscope     = getScopeFromDefinition(nockDef)
       , npath      = nockDef.path
-      , method     = nockDef.method.toLowerCase() || &#x22;get&#x22;
+      , method     = nockDef.method.toLowerCase() || "get"
       , status     = getStatusFromDefinition(nockDef)
       , rawHeaders = nockDef.rawHeaders || []
       , reqheaders = nockDef.reqheaders || {}
-      , body       = nockDef.body       || &#x27;&#x27;
+      , body       = nockDef.body       || ''
       , options    = nockDef.options    || {};
 
     //  We use request headers for both filtering (see below) and mocking.
-    //  Here we are setting up mocked request headers but we don&#x27;t want to
-    //  be changing the user&#x27;s options object so we clone it first.
+    //  Here we are setting up mocked request headers but we don't want to
+    //  be changing the user's options object so we clone it first.
     options = _.clone(options) || {};
     options.reqheaders = reqheaders;
 
@@ -1137,20 +1130,20 @@
     //  even an array of binary buffers (e.g. when content is enconded)
     var response;
     if (!nockDef.response) {
-      response = &#x27;&#x27;;
+      response = '';
     } else {
       response = _.isString(nockDef.response) ? tryJsonParse(nockDef.response) : nockDef.response;
     }
 
     var nock;
-    if (body===&#x22;*&#x22;) {
+    if (body==="*") {
       nock = startScope(nscope, options).filteringRequestBody(function() {
-        return &#x22;*&#x22;;
-      })[method](npath, &#x22;*&#x22;).reply(status, response, rawHeaders);
+        return "*";
+      })[method](npath, "*").reply(status, response, rawHeaders);
     } else {
       nock = startScope(nscope, options);
       //  If request headers were specified filter by them.
-      if (_.size(reqheaders) &#x3e; 0) {
+      if (_.size(reqheaders) &gt; 0) {
         for (var k in reqheaders) {
           nock.matchHeader(k, reqheaders[k]);
         }
@@ -1169,7 +1162,7 @@
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
   return body.replace(/(timestamp):([0-9]+)/g, function(match, key, value) {
-    return key + &#x27;:&#x27; + recordedTimestamp;
+    return key + ':' + recordedTimestamp;
   });
 };
 });
@@ -1202,15 +1195,15 @@ def.options = def.options || {};
   Transform.call(this);
 
   var self = this;
-  var data = &#x27;&#x27;;
+  var data = '';
   var ended = false;
 
   if (common.isStream(body)) {
-    body.on(&#x27;data&#x27;, function (chunk) {
+    body.on('data', function (chunk) {
       data += Buffer.isBuffer(chunk) ? chunk.toString() : chunk;
     });
 
-    body.once(&#x27;end&#x27;, function () {
+    body.once('end', function () {
       ended = true;
     });
 
@@ -1218,8 +1211,8 @@ def.options = def.options || {};
   }
 
   setTimeout(function () {
-    if (common.isStream(body) &#x26;&#x26; !ended) {
-      body.once(&#x27;end&#x27;, function () {
+    if (common.isStream(body) &amp;&amp; !ended) {
+      body.once('end', function () {
         self.end(data);
       });
     } else {
@@ -1253,11 +1246,11 @@ For disabling real http requests.
 nock.<span class="apidocCodeKeywordSpan">disableNetConnect</span>();
 ```
 
-So, if you try to request any host not &#x27;nocked&#x27;, it will thrown an `NetConnectNotAllowedError`.
+So, if you try to request any host not 'nocked', it will thrown an `NetConnectNotAllowedError`.
 
 ```js
 nock.disableNetConnect();
-var req = http.get(&#x27;http://google.com/&#x27;);
+var req = http.get('http://google.com/');
 ...</pre></li>
     </ul>
 
@@ -1273,7 +1266,7 @@ var req = http.get(&#x27;http://google.com/&#x27;);
     <li>description and source-code<pre class="apidocCodePre">function enableNetConnect(matcher) {
   if (_.isString(matcher)) {
     allowNetConnect = new RegExp(matcher);
-  } else if (_.isObject(matcher) &#x26;&#x26; _.isFunction(matcher.test)) {
+  } else if (_.isObject(matcher) &amp;&amp; _.isFunction(matcher.test)) {
     allowNetConnect = matcher;
   } else {
     allowNetConnect = /.*/;
@@ -1281,7 +1274,7 @@ var req = http.get(&#x27;http://google.com/&#x27;);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 // This code will log a NetConnectNotAllowedError with message:
-// Nock: Not allow net connect for &#x22;google.com:80&#x22;
+// Nock: Not allow net connect for "google.com:80"
 ```
 
 For enabling real HTTP requests (the default behaviour).
@@ -1294,7 +1287,7 @@ You could allow real HTTP request for certain host names by providing a string o
 
 ```js
 // using a string
-nock.enableNetConnect(&#x27;amazon.com&#x27;);
+nock.enableNetConnect('amazon.com');
 ...</pre></li>
     </ul>
 
@@ -1313,17 +1306,17 @@ nock.enableNetConnect(&#x27;amazon.com&#x27;);
   }
   interceptor.__nock_scope = scope;
 
-  //  We need scope&#x27;s key and scope options for scope filtering function (if defined)
+  //  We need scope's key and scope options for scope filtering function (if defined)
   interceptor.__nock_scopeKey = key;
   interceptor.__nock_scopeOptions = scopeOptions;
-  //  We need scope&#x27;s host for setting correct request headers for filtered scopes.
+  //  We need scope's host for setting correct request headers for filtered scopes.
   interceptor.__nock_scopeHost = host;
   interceptor.interceptionCounter = 0;
 
   allInterceptors[key].scopes.push(interceptor);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  .reply(200, { hello: &#x27;world&#x27; });
+  .reply(200, { hello: 'world' });
 ```
 
 ## HTTP Verbs
@@ -1334,8 +1327,8 @@ You can intercept any HTTP verb using `.<span class="apidocCodeKeywordSpan">inte
 ]])`:
 
 ```js
-scope(&#x27;http://my.domain.com&#x27;)
-  .intercept(&#x27;/path&#x27;, &#x27;PATCH&#x27;)
+scope('http://my.domain.com')
+  .intercept('/path', 'PATCH')
   .reply(304);
 ```
 ...</pre></li>
@@ -1355,18 +1348,18 @@ scope(&#x27;http://my.domain.com&#x27;)
     this.interceptorMatchHeaders = [];
     this.method = method.toUpperCase();
     this.uri = uri;
-    this._key = this.method + &#x27; &#x27; + scope.basePath + scope.basePathname + (typeof uri === &#x27;string&#x27; ? &#x27;&#x27; : &#x27;/&#x27;) + uri;
+    this._key = this.method + ' ' + scope.basePath + scope.basePathname + (typeof uri === 'string' ? '' : '/') + uri;
     this.basePath = this.scope.basePath;
-    this.path = (typeof uri === &#x27;string&#x27;) ? scope.basePathname + uri : uri;
+    this.path = (typeof uri === 'string') ? scope.basePathname + uri : uri;
 
-    this.baseUri = this.method + &#x27; &#x27; + scope.basePath + scope.basePathname;
+    this.baseUri = this.method + ' ' + scope.basePath + scope.basePathname;
     this.options = interceptorOptions || {};
     this.counter = 1;
     this._requestBody = requestBody;
 
     //  We use lower-case header field names throughout Nock.
-    this.reqheaders = common.headersFieldNamesToLowerCase((scope.scopeOptions &#x26;&#x26; scope.scopeOptions.reqheaders) || {});
-    this.badheaders = common.headersFieldsArrayToLowerCase((scope.scopeOptions &#x26;&#x26; scope.scopeOptions.badheaders) || []);
+    this.reqheaders = common.headersFieldNamesToLowerCase((scope.scopeOptions &amp;&amp; scope.scopeOptions.reqheaders) || {});
+    this.badheaders = common.headersFieldsArrayToLowerCase((scope.scopeOptions &amp;&amp; scope.scopeOptions.badheaders) || []);
 
 
     this.delayInMs = 0;
@@ -1442,7 +1435,7 @@ scope(&#x27;http://my.domain.com&#x27;)
   return define(loadDefs(path));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-* `path` - the path of the call (e.g. `&#x27;/pgte/nock&#x27;`)
+* `path` - the path of the call (e.g. `'/pgte/nock'`)
 * `body` - the body of the call, if any
 * `status` - the HTTP status of the reply (e.g. `200`)
 * `response` - the body of the reply which can be a JSON, string, hex string representing binary buffers or an array of such hex
@@ -1458,7 +1451,7 @@ timestamps to match the ones captured during recording):
 nocks = nock.load(pathToJson);
 nocks.forEach(function(nock) {
 nock.filteringRequestBody = function(body, aRecordedBody) {
-  if (typeof(body) !== &#x27;string&#x27; || typeof(aRecordedBody) !== &#x27;string&#x27;) {
+  if (typeof(body) !== 'string' || typeof(aRecordedBody) !== 'string') {
     return body;
 ...</pre></li>
     </ul>
@@ -1474,7 +1467,7 @@ nock.filteringRequestBody = function(body, aRecordedBody) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function loadDefs(path) {
   if (! fs) {
-    throw new Error(&#x27;No fs&#x27;);
+    throw new Error('No fs');
   }
 
   var contents = fs.readFileSync(path);
@@ -1482,7 +1475,7 @@ nock.filteringRequestBody = function(body, aRecordedBody) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
   return body.replace(/(timestamp):([0-9]+)/g, function(match, key, value) {
-    return key + &#x27;:&#x27; + recordedTimestamp;
+    return key + ':' + recordedTimestamp;
   });
 };
 });
@@ -1550,17 +1543,17 @@ def.options = def.options || {};
     baseUrl = options.basePath;
     key = options._key;
   } else {
-    proto = options.proto ? options.proto : &#x27;http&#x27;;
+    proto = options.proto ? options.proto : 'http';
 
     common.normalizeRequestOptions(options);
-    baseUrl = proto + &#x27;://&#x27; + options.host;
-    method = options.method &#x26;&#x26; options.method.toUpperCase() || &#x27;GET&#x27;;
-    key = method + &#x27; &#x27; + baseUrl + (options.path || &#x27;/&#x27;);
+    baseUrl = proto + '://' + options.host;
+    method = options.method &amp;&amp; options.method.toUpperCase() || 'GET';
+    key = method + ' ' + baseUrl + (options.path || '/');
   }
 
-  if (allInterceptors[baseUrl] &#x26;&#x26; allInterceptors[baseUrl].scopes.length &#x3e; 0) {
+  if (allInterceptors[baseUrl] &amp;&amp; allInterceptors[baseUrl].scopes.length &gt; 0) {
     if (key) {
-      for (var i = 0; i &#x3c; allInterceptors[baseUrl].scopes.length; i++) {
+      for (var i = 0; i &lt; allInterceptors[baseUrl].scopes.length; i++) {
         var interceptor = allInterceptors[baseUrl].scopes[i];
         if (interceptor._key === key) {
           allInterceptors[baseUrl].scopes.splice(i, 1);
@@ -1606,7 +1599,7 @@ def.options = def.options || {};
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function restore() {
-  debug(currentRecordingId, &#x27;restoring all the overridden http/https properties&#x27;);
+  debug(currentRecordingId, 'restoring all the overridden http/https properties');
 
   common.restoreOverriddenRequests();
   intercept.restoreOverriddenClientRequest();
@@ -1627,7 +1620,7 @@ nock.<span class="apidocCodeKeywordSpan">restore</span>();
 
 # Turning Nock Off (experimental!)
 
-You can bypass Nock completely by setting `NOCK_OFF` environment variable to `&#x22;true&#x22;`.
+You can bypass Nock completely by setting `NOCK_OFF` environment variable to `"true"`.
 ...</pre></li>
     </ul>
 
@@ -1649,7 +1642,7 @@ You can bypass Nock completely by setting `NOCK_OFF` environment variable to `&#
 
   options = options || {};
 
-  if (options.proto === &#x27;https&#x27;) {
+  if (options.proto === 'https') {
     this.authorized = true;
   }
 
@@ -1699,9 +1692,9 @@ You can bypass Nock completely by setting `NOCK_OFF` environment variable to `&#
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function Back(fixtureName, options, nockedFn) {
   if(!Back.fixtures) {
-    throw new Error(  &#x27;Back requires nock.back.fixtures to be set\n&#x27; +
-                      &#x27;Ex:\n&#x27; +
-                      &#x27;\trequire(nock).back.fixtures = \&#x27;/path/to/fixures/\&#x27;&#x27;);
+    throw new Error(  'Back requires nock.back.fixtures to be set\n' +
+                      'Ex:\n' +
+                      '\trequire(nock).back.fixtures = \'/path/to/fixures/\'');
   }
 
   if( arguments.length === 2 ) {
@@ -1719,7 +1712,7 @@ You can bypass Nock completely by setting `NOCK_OFF` environment variable to `&#
     _mode.finish(fixture, options, context);
   };
 
-  debug(&#x27;context:&#x27;, context);
+  debug('context:', context);
 
   nockedFn.call(context, nockDone);
 }</pre></li>
@@ -1737,11 +1730,11 @@ You can bypass Nock completely by setting `NOCK_OFF` environment variable to `&#
     <ul>
     <li>description and source-code<pre class="apidocCodePre">setMode = function (mode) {
   if( !Modes.hasOwnProperty(mode) ) {
-    throw new Error (&#x27;some usage error&#x27;);
+    throw new Error ('some usage error');
   }
 
   Back.currentMode = mode;
-  debug(&#x27;New nock back mode:&#x27;, Back.currentMode);
+  debug('New nock back mode:', Back.currentMode);
 
   _mode = Modes[mode];
   _mode.setup();
@@ -1751,10 +1744,10 @@ You can bypass Nock completely by setting `NOCK_OFF` environment variable to `&#
 In your test helper
 
 ```javascript
-var nockBack = require(&#x27;nock&#x27;).back;
+var nockBack = require('nock').back;
 
-nockBack.fixtures = &#x27;/path/to/fixtures/&#x27;;
-nockBack.<span class="apidocCodeKeywordSpan">setMode</span>(&#x27;record&#x27;);
+nockBack.fixtures = '/path/to/fixtures/';
+nockBack.<span class="apidocCodeKeywordSpan">setMode</span>('record');
 ```
 
 ### Options
@@ -1783,26 +1776,26 @@ nockBack.<span class="apidocCodeKeywordSpan">setMode</span>(&#x27;record&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function contentEncoding(headers, encoder) {
-  var contentEncoding = _.get(headers, &#x27;content-encoding&#x27;);
+  var contentEncoding = _.get(headers, 'content-encoding');
   return contentEncoding === encoder;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 response.headers = _.extend({}, interceptor.headers);
 response.rawHeaders = (interceptor.rawHeaders || []).slice();
-debug(&#x27;response.rawHeaders:&#x27;, response.rawHeaders);
+debug('response.rawHeaders:', response.rawHeaders);
 
 
-if (typeof interceptor.body === &#x27;function&#x27;) {
-  if (requestBody &#x26;&#x26; common.isJSONContent(options.headers)) {
-    if (requestBody &#x26;&#x26; common.<span class="apidocCodeKeywordSpan">contentEncoding</span>(options.headers, &#x27;gzip&#
+if (typeof interceptor.body === 'function') {
+  if (requestBody &amp;&amp; common.isJSONContent(options.headers)) {
+    if (requestBody &amp;&amp; common.<span class="apidocCodeKeywordSpan">contentEncoding</span>(options.headers, 'gzip&amp;#
 x27;)) {
-      if (typeof zlib.gunzipSync !== &#x27;function&#x27;) {
-        emitError(new Error(&#x27;Gzip encoding is currently not supported in this version of Node.&#x27;));
+      if (typeof zlib.gunzipSync !== 'function') {
+        emitError(new Error('Gzip encoding is currently not supported in this version of Node.'));
         return;
       }
-      requestBody = String(zlib.gunzipSync(new Buffer(requestBody, &#x27;hex&#x27;)), &#x27;hex&#x27;)
-    } else if (requestBody &#x26;&#x26; common.contentEncoding(options.headers, &#x27;deflate&#x27;)) {
-      if (typeof zlib.deflateSync !== &#x27;function&#x27;) {
+      requestBody = String(zlib.gunzipSync(new Buffer(requestBody, 'hex')), 'hex')
+    } else if (requestBody &amp;&amp; common.contentEncoding(options.headers, 'deflate')) {
+      if (typeof zlib.deflateSync !== 'function') {
 ...</pre></li>
     </ul>
 
@@ -1828,8 +1821,8 @@ x27;)) {
     var lowerCaseFieldName = fieldName.toLowerCase();
     if(lowerCaseFieldName === lowerCaseFieldNameToDelete) {
       delete headers[fieldName];
-      //  We don&#x27;t stop here but continue in order to remove *all* matching field names
-      //  (even though if seen regorously there shouldn&#x27;t be any)
+      //  We don't stop here but continue in order to remove *all* matching field names
+      //  (even though if seen regorously there shouldn't be any)
     }
   });
 
@@ -1842,7 +1835,7 @@ if(output_objects) {
   if(out.reqheaders) {
     //  We never record user-agent headers as they are worse than useless -
     //  they actually make testing more difficult without providing any benefit (see README)
-    common.<span class="apidocCodeKeywordSpan">deleteHeadersField</span>(out.reqheaders, &#x27;user-agent&#x27;);
+    common.<span class="apidocCodeKeywordSpan">deleteHeadersField</span>(out.reqheaders, 'user-agent');
 
     //  Remove request headers completely unless it was explicitly enabled by the user (see README)
     if(!enable_reqheaders_recording) {
@@ -1870,7 +1863,7 @@ if(output_objects) {
       break;
     case _.isUndefined(value): // fall-though
     case _.isNull(value):
-      value = &#x27;&#x27;;
+      value = '';
       break;
     case _.isString(value):
       if(options.encodedQueryParams) {
@@ -1881,7 +1874,7 @@ if(output_objects) {
       break;
     case _.isArray(value):
       var tmpArray = new Array(value.length);
-      for (var i = 0; i &#x3c; value.length; ++i) {
+      for (var i = 0; i &lt; value.length; ++i) {
         tmpArray[i] = formatQueryValue(i, value[i], options)[1];
       }
       value = tmpArray;
@@ -1934,7 +1927,7 @@ if(output_objects) {
 
   var headers = {};
 
-  for (var i=0, len=rawHeaders.length; i&#x3c;len; i=i+2) {
+  for (var i=0, len=rawHeaders.length; i&lt;len; i=i+2) {
     var key = rawHeaders[i];
     var value = rawHeaders[i+1];
 
@@ -1987,7 +1980,7 @@ if (this.scope.date) {
   _.forOwn(headers, function(fieldVal, fieldName) {
     var lowerCaseFieldName = fieldName.toLowerCase();
     if(!_.isUndefined(lowerCaseHeaders[lowerCaseFieldName])) {
-      throw new Error(&#x27;Failed to convert header keys to lower case due to field name conflict: &#x27; + lowerCaseFieldName);
+      throw new Error('Failed to convert header keys to lower case due to field name conflict: ' + lowerCaseFieldName);
     }
     lowerCaseHeaders[lowerCaseFieldName] = fieldVal;
   });
@@ -1996,15 +1989,15 @@ if (this.scope.date) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-this.baseUri = this.method + &#x27; &#x27; + scope.basePath + scope.basePathname;
+this.baseUri = this.method + ' ' + scope.basePath + scope.basePathname;
 this.options = interceptorOptions || {};
 this.counter = 1;
 this._requestBody = requestBody;
 
 //  We use lower-case header field names throughout Nock.
-this.reqheaders = common.<span class="apidocCodeKeywordSpan">headersFieldNamesToLowerCase</span>((scope.scopeOptions &#x26;&#x26
+this.reqheaders = common.<span class="apidocCodeKeywordSpan">headersFieldNamesToLowerCase</span>((scope.scopeOptions &amp;&amp;
 ; scope.scopeOptions.reqheaders) || {});
-this.badheaders = common.headersFieldsArrayToLowerCase((scope.scopeOptions &#x26;&#x26; scope.scopeOptions.badheaders) || []);
+this.badheaders = common.headersFieldsArrayToLowerCase((scope.scopeOptions &amp;&amp; scope.scopeOptions.badheaders) || []);
 
 
 this.delayInMs = 0;
@@ -2029,14 +2022,14 @@ this.optional = false;
   }));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    this.baseUri = this.method + &#x27; &#x27; + scope.basePath + scope.basePathname;
+    this.baseUri = this.method + ' ' + scope.basePath + scope.basePathname;
     this.options = interceptorOptions || {};
     this.counter = 1;
     this._requestBody = requestBody;
 
     //  We use lower-case header field names throughout Nock.
-    this.reqheaders = common.headersFieldNamesToLowerCase((scope.scopeOptions &#x26;&#x26; scope.scopeOptions.reqheaders) || {});
-    this.badheaders = common.<span class="apidocCodeKeywordSpan">headersFieldsArrayToLowerCase</span>((scope.scopeOptions &#x26;&#
+    this.reqheaders = common.headersFieldNamesToLowerCase((scope.scopeOptions &amp;&amp; scope.scopeOptions.reqheaders) || {});
+    this.badheaders = common.<span class="apidocCodeKeywordSpan">headersFieldsArrayToLowerCase</span>((scope.scopeOptions &amp;&amp;#
 x26; scope.scopeOptions.badheaders) || []);
 
 
@@ -2064,14 +2057,14 @@ x26; scope.scopeOptions.badheaders) || []);
   }
 
   //  Test if the buffer can be reconstructed verbatim from its utf8 encoding.
-  var utfEncodedBuffer = buffer.toString(&#x27;utf8&#x27;);
-  var reconstructedBuffer = new Buffer(utfEncodedBuffer, &#x27;utf8&#x27;);
+  var utfEncodedBuffer = buffer.toString('utf8');
+  var reconstructedBuffer = new Buffer(utfEncodedBuffer, 'utf8');
   var compareBuffers = function(lhs, rhs) {
     if(lhs.length !== rhs.length) {
       return false;
     }
 
-    for(var i = 0; i &#x3c; lhs.length; ++i) {
+    for(var i = 0; i &lt; lhs.length; ++i) {
       if(lhs[i] !== rhs[i]) {
         return false;
       }
@@ -2080,7 +2073,7 @@ x26; scope.scopeOptions.badheaders) || []);
     return true;
   };
 
-  //  If the buffers are *not* equal then this is a &#x22;binary buffer&#x22;
+  //  If the buffers are *not* equal then this is a "binary buffer"
   //  meaning that it cannot be faitfully represented in utf8.
   return !compareBuffers(buffer, reconstructedBuffer);
 
@@ -2091,12 +2084,12 @@ var mergedBuffer = common.mergeChunks(chunks);
 //  The merged buffer can be one of three things:
 //    1.  A binary buffer which then has to be recorded as a hex string.
 //    2.  A string buffer which represents a JSON object.
-//    3.  A string buffer which doesn&#x27;t represent a JSON object.
+//    3.  A string buffer which doesn't represent a JSON object.
 
 if(common.<span class="apidocCodeKeywordSpan">isBinaryBuffer</span>(mergedBuffer)) {
-  return mergedBuffer.toString(&#x27;hex&#x27;);
+  return mergedBuffer.toString('hex');
 } else {
-  var maybeStringifiedJson = mergedBuffer.toString(&#x27;utf8&#x27;);
+  var maybeStringifiedJson = mergedBuffer.toString('utf8');
   try {
     return JSON.parse(maybeStringifiedJson);
   } catch(err) {
@@ -2114,21 +2107,21 @@ if(common.<span class="apidocCodeKeywordSpan">isBinaryBuffer</span>(mergedBuffer
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function isContentEncoded(headers) {
-  var contentEncoding = _.get(headers, &#x27;content-encoding&#x27;);
-  return _.isString(contentEncoding) &#x26;&#x26; contentEncoding !== &#x27;&#x27;;
+  var contentEncoding = _.get(headers, 'content-encoding');
+  return _.isString(contentEncoding) &amp;&amp; contentEncoding !== '';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-    debug(&#x27;reply.headers:&#x27;, this.headers);
-    debug(&#x27;reply.rawHeaders:&#x27;, this.rawHeaders);
+    debug('reply.headers:', this.headers);
+    debug('reply.rawHeaders:', this.rawHeaders);
 }
 
 //  If the content is not encoded we may need to transform the response body.
 //  Otherwise we leave it as it is.
 if (!common.<span class="apidocCodeKeywordSpan">isContentEncoded</span>(this.headers)) {
-    if (body &#x26;&#x26; typeof(body) !== &#x27;string&#x27; &#x26;&#x26;
-        typeof(body) !== &#x27;function&#x27; &#x26;&#x26;
-        !Buffer.isBuffer(body) &#x26;&#x26;
+    if (body &amp;&amp; typeof(body) !== 'string' &amp;&amp;
+        typeof(body) !== 'function' &amp;&amp;
+        !Buffer.isBuffer(body) &amp;&amp;
         !common.isStream(body)) {
         try {
             body = stringify(body);
@@ -2146,30 +2139,30 @@ if (!common.<span class="apidocCodeKeywordSpan">isContentEncoded</span>(this.hea
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function isJSONContent(headers) {
-  var contentType = _.get(headers, &#x27;content-type&#x27;);
+  var contentType = _.get(headers, 'content-type');
   if (Array.isArray(contentType)) {
     contentType = contentType[0];
   }
-  contentType = (contentType || &#x27;&#x27;).toLocaleLowerCase();
+  contentType = (contentType || '').toLocaleLowerCase();
 
-  return contentType === &#x27;application/json&#x27;;
+  return contentType === 'application/json';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 // Clone headers/rawHeaders to not override them when evaluating later
 response.headers = _.extend({}, interceptor.headers);
 response.rawHeaders = (interceptor.rawHeaders || []).slice();
-debug(&#x27;response.rawHeaders:&#x27;, response.rawHeaders);
+debug('response.rawHeaders:', response.rawHeaders);
 
 
-if (typeof interceptor.body === &#x27;function&#x27;) {
-  if (requestBody &#x26;&#x26; common.<span class="apidocCodeKeywordSpan">isJSONContent</span>(options.headers)) {
-    if (requestBody &#x26;&#x26; common.contentEncoding(options.headers, &#x27;gzip&#x27;)) {
-      if (typeof zlib.gunzipSync !== &#x27;function&#x27;) {
-        emitError(new Error(&#x27;Gzip encoding is currently not supported in this version of Node.&#x27;));
+if (typeof interceptor.body === 'function') {
+  if (requestBody &amp;&amp; common.<span class="apidocCodeKeywordSpan">isJSONContent</span>(options.headers)) {
+    if (requestBody &amp;&amp; common.contentEncoding(options.headers, 'gzip')) {
+      if (typeof zlib.gunzipSync !== 'function') {
+        emitError(new Error('Gzip encoding is currently not supported in this version of Node.'));
         return;
       }
-      requestBody = String(zlib.gunzipSync(new Buffer(requestBody, &#x27;hex&#x27;)), &#x27;hex&#x27;)
-    } else if (requestBody &#x26;&#x26; common.contentEncoding(options.headers, &#x27;deflate&#x27;)) {
+      requestBody = String(zlib.gunzipSync(new Buffer(requestBody, 'hex')), 'hex')
+    } else if (requestBody &amp;&amp; common.contentEncoding(options.headers, 'deflate')) {
 ...</pre></li>
     </ul>
 
@@ -2183,9 +2176,9 @@ if (typeof interceptor.body === &#x27;function&#x27;) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function isStream(obj) {
-  return obj &#x26;&#x26;
-      (typeof a !== &#x27;string&#x27;) &#x26;&#x26;
-      (! Buffer.isBuffer(obj)) &#x26;&#x26;
+  return obj &amp;&amp;
+      (typeof a !== 'string') &amp;&amp;
+      (! Buffer.isBuffer(obj)) &amp;&amp;
       _.isFunction(obj.setEncoding);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -2193,15 +2186,15 @@ function DelayedBody(ms, body) {
   Transform.call(this);
 
   var self = this;
-  var data = &#x27;&#x27;;
+  var data = '';
   var ended = false;
 
   if (common.<span class="apidocCodeKeywordSpan">isStream</span>(body)) {
-body.on(&#x27;data&#x27;, function (chunk) {
+body.on('data', function (chunk) {
   data += Buffer.isBuffer(chunk) ? chunk.toString() : chunk;
 });
 
-body.once(&#x27;end&#x27;, function () {
+body.once('end', function () {
   ended = true;
 });
 ...</pre></li>
@@ -2217,7 +2210,7 @@ body.once(&#x27;end&#x27;, function () {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function matchStringOrRegexp(target, pattern) {
-  var str = target &#x26;&#x26; target.toString ? target.toString() : target;
+  var str = target &amp;&amp; target.toString ? target.toString() : target;
 
   return pattern instanceof RegExp  ? str.match(pattern) : str === pattern;
 }</pre></li>
@@ -2229,7 +2222,7 @@ body.once(&#x27;end&#x27;, function () {
   }
 });
 
-if (!matchingInterceptor &#x26;&#x26; common.<span class="apidocCodeKeywordSpan">matchStringOrRegexp</span>(basePath, interceptor
+if (!matchingInterceptor &amp;&amp; common.<span class="apidocCodeKeywordSpan">matchStringOrRegexp</span>(basePath, interceptor
 .key)) {
   matchingInterceptor = interceptor.scopes;
   // false to short circuit the .each
@@ -2261,7 +2254,7 @@ if (!matchingInterceptor &#x26;&#x26; common.<span class="apidocCodeKeywordSpan"
 
   if(!areBuffers) {
     //  When the chunks are not buffers we assume that they are strings.
-    return chunks.join(&#x27;&#x27;);
+    return chunks.join('');
   }
 
   //  Merge all the buffers into a single Buffer object.
@@ -2272,7 +2265,7 @@ if (!matchingInterceptor &#x26;&#x26; common.<span class="apidocCodeKeywordSpan"
       }
     }
 
-    return chunk.toString(&#x27;hex&#x27;);
+    return chunk.toString('hex');
   });
 }
 
@@ -2281,7 +2274,7 @@ var mergedBuffer = common.<span class="apidocCodeKeywordSpan">mergeChunks</span>
 //  The merged buffer can be one of three things:
 //    1.  A binary buffer which then has to be recorded as a hex string.
 //    2.  A string buffer which represents a JSON object.
-//    3.  A string buffer which doesn&#x27;t represent a JSON object.
+//    3.  A string buffer which doesn't represent a JSON object.
 
 if(common.isBinaryBuffer(mergedBuffer)) {
 ...</pre></li>
@@ -2297,24 +2290,24 @@ if(common.isBinaryBuffer(mergedBuffer)) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">normalizeRequestOptions = function (options) {
-  options.proto = options.proto || (options._https_ ? &#x27;https&#x27;: &#x27;http&#x27;);
-  options.port = options.port || ((options.proto === &#x27;http&#x27;) ? 80 : 443);
+  options.proto = options.proto || (options._https_ ? 'https': 'http');
+  options.port = options.port || ((options.proto === 'http') ? 80 : 443);
   if (options.host) {
-    debug(&#x27;options.host:&#x27;, options.host);
+    debug('options.host:', options.host);
     if (! options.hostname) {
-      if (options.host.split(&#x27;:&#x27;).length == 2) {
-        options.hostname = options.host.split(&#x27;:&#x27;)[0];
+      if (options.host.split(':').length == 2) {
+        options.hostname = options.host.split(':')[0];
       } else {
         options.hostname = options.host;
       }
     }
   }
-  debug(&#x27;options.hostname in the end: %j&#x27;, options.hostname);
-  options.host = (options.hostname || &#x27;localhost&#x27;) + &#x27;:&#x27; + options.port;
-  debug(&#x27;options.host in the end: %j&#x27;, options.host);
+  debug('options.hostname in the end: %j', options.hostname);
+  options.host = (options.hostname || 'localhost') + ':' + options.port;
+  debug('options.host in the end: %j', options.host);
 
   /// lowercase host names
-  [&#x27;hostname&#x27;, &#x27;host&#x27;].forEach(function(attr) {
+  ['hostname', 'host'].forEach(function(attr) {
     if (options[attr]) {
       options[attr] = options[attr].toLowerCase();
     }
@@ -2332,8 +2325,8 @@ if(common.isBinaryBuffer(mergedBuffer)) {
 function isEnabledForNetConnect(options) {
   common.<span class="apidocCodeKeywordSpan">normalizeRequestOptions</span>(options);
 
-  var enabled = allowNetConnect &#x26;&#x26; allowNetConnect.test(options.host);
-  debug(&#x27;Net connect&#x27;, enabled ? &#x27;&#x27; : &#x27;not&#x27;, &#x27;enabled for&#x27;, options.host);
+  var enabled = allowNetConnect &amp;&amp; allowNetConnect.test(options.host);
+  debug('Net connect', enabled ? '' : 'not', 'enabled for', options.host);
   return enabled;
 }
 
@@ -2351,20 +2344,20 @@ function isEnabledForNetConnect(options) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">overrideRequests = function (newRequest) {
-  debug(&#x27;overriding requests&#x27;);
+  debug('overriding requests');
 
-  [&#x27;http&#x27;, &#x27;https&#x27;].forEach(function(proto) {
-    debug(&#x27;- overriding request for&#x27;, proto);
+  ['http', 'https'].forEach(function(proto) {
+    debug('- overriding request for', proto);
 
     var moduleName = proto, // 1 to 1 match of protocol and module is fortunate :)
         module = {
-          http: require(&#x27;http&#x27;),
-          https: require(&#x27;https&#x27;)
+          http: require('http'),
+          https: require('https')
         }[moduleName],
         overriddenRequest = module.request;
 
     if(requestOverride[moduleName]) {
-      throw new Error(&#x27;Module\&#x27;s request already overridden for &#x27; + moduleName + &#x27; protocol.&#x27;);
+      throw new Error('Module\'s request already overridden for ' + moduleName + ' protocol.');
     }
 
     //  Store the properties of the overridden request so that it can be restored later on.
@@ -2374,15 +2367,15 @@ function isEnabledForNetConnect(options) {
     };
 
     module.request = function(options, callback) {
-      // debug(&#x27;request options:&#x27;, options);
+      // debug('request options:', options);
       return newRequest(proto, overriddenRequest.bind(module), options, callback);
     };
 
-    debug(&#x27;- overridden request for&#x27;, proto);
+    debug('- overridden request for', proto);
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-throw new Error(&#x27;Nock already active&#x27;);
+throw new Error('Nock already active');
   }
 
   overrideClientRequest();
@@ -2394,7 +2387,7 @@ throw new Error(&#x27;Nock already active&#x27;);
 var req,
     res;
 
-if (typeof options === &#x27;string&#x27;) {
+if (typeof options === 'string') {
   options = parse(options);
 }
 ...</pre></li>
@@ -2411,7 +2404,7 @@ if (typeof options === &#x27;string&#x27;) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function percentDecode(str) {
   try {
-    return decodeURIComponent(str.replace(/\+/g, &#x27; &#x27;));
+    return decodeURIComponent(str.replace(/\+/g, ' '));
   } catch (e) {
     return str;
   }
@@ -2429,8 +2422,8 @@ if (typeof options === &#x27;string&#x27;) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function percentEncode(str) {
-  return encodeURIComponent(str).replace(/[!&#x27;()*]/g, function(c) {
-    return &#x27;%&#x27; + c.charCodeAt(0).toString(16).toUpperCase();
+  return encodeURIComponent(str).replace(/[!'()*]/g, function(c) {
+    return '%' + c.charCodeAt(0).toString(16).toUpperCase();
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -2446,16 +2439,16 @@ if (typeof options === &#x27;string&#x27;) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">restoreOverriddenRequests = function () {
-  debug(&#x27;restoring requests&#x27;);
+  debug('restoring requests');
 
   //  Restore any overridden requests.
   _(requestOverride).keys().each(function(proto) {
-    debug(&#x27;- restoring request for&#x27;, proto);
+    debug('- restoring request for', proto);
 
     var override = requestOverride[proto];
     if(override) {
       override.module.request = override.request;
-      debug(&#x27;- restored request for&#x27;, proto);
+      debug('- restored request for', proto);
     }
   });
   requestOverride = [];
@@ -2463,8 +2456,8 @@ if (typeof options === &#x27;string&#x27;) {
     <li>example usage<pre class="apidocCodePre">...
   }
 
-  debug(thisRecordingId, &#x27;restoring overridden requests before new overrides&#x27;);
-  //  To preserve backward compatibility (starting recording wasn&#x27;t throwing if nock was already active)
+  debug(thisRecordingId, 'restoring overridden requests before new overrides');
+  //  To preserve backward compatibility (starting recording wasn't throwing if nock was already active)
   //  we restore any requests that may have been overridden by other parts of nock (e.g. intercept)
   //  NOTE: This is hacky as hell but it keeps the backward compatibility *and* allows correct
   //    behavior in the face of other modules also overriding ClientRequest.
@@ -2489,21 +2482,21 @@ var bodyChunks = [];
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function stringifyRequest(options, body) {
-  var method = options.method || &#x27;GET&#x27;;
+  var method = options.method || 'GET';
 
   var port = options.port;
-  if (! port) port = (options.proto == &#x27;https&#x27; ? &#x27;443&#x27; : &#x27;80&#x27;);
+  if (! port) port = (options.proto == 'https' ? '443' : '80');
 
-  if (options.proto == &#x27;https&#x27; &#x26;&#x26; port == &#x27;443&#x27; ||
-      options.proto == &#x27;http&#x27; &#x26;&#x26; port == &#x27;80&#x27;) {
-    port = &#x27;&#x27;;
+  if (options.proto == 'https' &amp;&amp; port == '443' ||
+      options.proto == 'http' &amp;&amp; port == '80') {
+    port = '';
   }
 
-  if (port) port = &#x27;:&#x27; + port;
+  if (port) port = ':' + port;
 
   var log = {
     method: method,
-    url: options.proto + &#x27;://&#x27; + options.hostname + port + options.path,
+    url: options.proto + '://' + options.hostname + port + options.path,
     headers: options.headers
   };
 
@@ -2521,14 +2514,13 @@ var bodyChunks = [];
     }
   }
 
-  var err = new Error(&#x22;Nock: No match for request &#x22; + common.<span class="apidocCodeKeywordSpan">stringifyRequest</span
->(options, requestBody));
+  var err = new Error("Nock: No match for request " + common.<span class="apidocCodeKeywordSpan">stringifyRequest</span>(options, requestBody));
   err.statusCode = err.status = 404;
   emitError(err);
   return;
 }
 
-debug(&#x27;interceptor identified, starting mocking&#x27;);
+debug('interceptor identified, starting mocking');
 ...</pre></li>
     </ul>
 
@@ -2550,15 +2542,15 @@ debug(&#x27;interceptor identified, starting mocking&#x27;);
   Transform.call(this);
 
   var self = this;
-  var data = &#x27;&#x27;;
+  var data = '';
   var ended = false;
 
   if (common.isStream(body)) {
-    body.on(&#x27;data&#x27;, function (chunk) {
+    body.on('data', function (chunk) {
       data += Buffer.isBuffer(chunk) ? chunk.toString() : chunk;
     });
 
-    body.once(&#x27;end&#x27;, function () {
+    body.once('end', function () {
       ended = true;
     });
 
@@ -2566,8 +2558,8 @@ debug(&#x27;interceptor identified, starting mocking&#x27;);
   }
 
   setTimeout(function () {
-    if (common.isStream(body) &#x26;&#x26; !ended) {
-      body.once(&#x27;end&#x27;, function () {
+    if (common.isStream(body) &amp;&amp; !ended) {
+      body.once('end', function () {
         self.end(data);
       });
     } else {
@@ -2606,16 +2598,16 @@ debug(&#x27;interceptor identified, starting mocking&#x27;);
   this._readableState.sync = false;
 
   if (options) {
-    if (typeof options.transform === &#x27;function&#x27;)
+    if (typeof options.transform === 'function')
       this._transform = options.transform;
 
-    if (typeof options.flush === &#x27;function&#x27;)
+    if (typeof options.flush === 'function')
       this._flush = options.flush;
   }
 
   // When the writable side finishes, then flush out anything remaining.
-  this.once(&#x27;prefinish&#x27;, function() {
-    if (typeof this._flush === &#x27;function&#x27;)
+  this.once('prefinish', function() {
+    if (typeof this._flush === 'function')
       this._flush(function(er) {
         done(stream, er);
       });
@@ -2667,17 +2659,17 @@ debug(&#x27;interceptor identified, starting mocking&#x27;);
   }
   interceptor.__nock_scope = scope;
 
-  //  We need scope&#x27;s key and scope options for scope filtering function (if defined)
+  //  We need scope's key and scope options for scope filtering function (if defined)
   interceptor.__nock_scopeKey = key;
   interceptor.__nock_scopeOptions = scopeOptions;
-  //  We need scope&#x27;s host for setting correct request headers for filtered scopes.
+  //  We need scope's host for setting correct request headers for filtered scopes.
   interceptor.__nock_scopeHost = host;
   interceptor.interceptionCounter = 0;
 
   allInterceptors[key].scopes.push(interceptor);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  .reply(200, { hello: &#x27;world&#x27; });
+  .reply(200, { hello: 'world' });
 ```
 
 ## HTTP Verbs
@@ -2688,8 +2680,8 @@ You can intercept any HTTP verb using `.<span class="apidocCodeKeywordSpan">inte
 ]])`:
 
 ```js
-scope(&#x27;http://my.domain.com&#x27;)
-  .intercept(&#x27;/path&#x27;, &#x27;PATCH&#x27;)
+scope('http://my.domain.com')
+  .intercept('/path', 'PATCH')
   .reply(304);
 ```
 ...</pre></li>
@@ -2707,7 +2699,7 @@ scope(&#x27;http://my.domain.com&#x27;)
     <li>description and source-code<pre class="apidocCodePre">function activate() {
 
   if(originalClientRequest) {
-    throw new Error(&#x27;Nock already active&#x27;);
+    throw new Error('Nock already active');
   }
 
   overrideClientRequest();
@@ -2719,14 +2711,14 @@ scope(&#x27;http://my.domain.com&#x27;)
     var req,
         res;
 
-    if (typeof options === &#x27;string&#x27;) {
+    if (typeof options === 'string') {
       options = parse(options);
     }
     options.proto = proto;
 
     var interceptors = interceptorsFor(options)
 
-    if (isOn() &#x26;&#x26; interceptors) {
+    if (isOn() &amp;&amp; interceptors) {
       var matches = false,
           allowUnmocked = false;
 
@@ -2738,8 +2730,8 @@ scope(&#x27;http://my.domain.com&#x27;)
         return interceptor.options.allowUnmocked;
       });
 
-      if (! matches &#x26;&#x26; allowUnmocked) {
-        if (proto === &#x27;https&#x27;) {
+      if (! matches &amp;&amp; allowUnmocked) {
+        if (proto === 'https') {
           var ClientRequest = http.ClientRequest;
           http.ClientRequest = originalClientRequest;
           req = overriddenRequest(options, callback);
@@ -2747,7 +2739,7 @@ scope(&#x27;http://my.domain.com&#x27;)
         } else {
           req = overriddenRequest(options, callback);
         }
-        globalEmitter.emit(&#x27;no match&#x27;, req);
+        globalEmitter.emit('no match', req);
         return req;
       }
 
@@ -2757,11 +2749,11 @@ scope(&#x27;http://my.domain.com&#x27;)
 
       res = RequestOverrider(req, options, interceptors, remove);
       if (callback) {
-        res.on(&#x27;response&#x27;, callback);
+        res.on('response', callback);
       }
       return req;
     } else {
-      globalEmitter.emit(&#x27;no match&#x27;, options);
+      globalEmitter.emit('no match', options);
       if (isOff() || isEnabledForNetConnect(options)) {
         return overriddenRequest(options, callback);
       } else {
@@ -2831,11 +2823,11 @@ For disabling real http requests.
 nock.<span class="apidocCodeKeywordSpan">disableNetConnect</span>();
 ```
 
-So, if you try to request any host not &#x27;nocked&#x27;, it will thrown an `NetConnectNotAllowedError`.
+So, if you try to request any host not 'nocked', it will thrown an `NetConnectNotAllowedError`.
 
 ```js
 nock.disableNetConnect();
-var req = http.get(&#x27;http://google.com/&#x27;);
+var req = http.get('http://google.com/');
 ...</pre></li>
     </ul>
 
@@ -2851,7 +2843,7 @@ var req = http.get(&#x27;http://google.com/&#x27;);
     <li>description and source-code<pre class="apidocCodePre">function enableNetConnect(matcher) {
   if (_.isString(matcher)) {
     allowNetConnect = new RegExp(matcher);
-  } else if (_.isObject(matcher) &#x26;&#x26; _.isFunction(matcher.test)) {
+  } else if (_.isObject(matcher) &amp;&amp; _.isFunction(matcher.test)) {
     allowNetConnect = matcher;
   } else {
     allowNetConnect = /.*/;
@@ -2859,7 +2851,7 @@ var req = http.get(&#x27;http://google.com/&#x27;);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 // This code will log a NetConnectNotAllowedError with message:
-// Nock: Not allow net connect for &#x22;google.com:80&#x22;
+// Nock: Not allow net connect for "google.com:80"
 ```
 
 For enabling real HTTP requests (the default behaviour).
@@ -2872,7 +2864,7 @@ You could allow real HTTP request for certain host names by providing a string o
 
 ```js
 // using a string
-nock.enableNetConnect(&#x27;amazon.com&#x27;);
+nock.enableNetConnect('amazon.com');
 ...</pre></li>
     </ul>
 
@@ -2953,10 +2945,10 @@ nock.enableNetConnect(&#x27;amazon.com&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function overrideClientRequest() {
-  debug(&#x27;Overriding ClientRequest&#x27;);
+  debug('Overriding ClientRequest');
 
   if(originalClientRequest) {
-    throw new Error(&#x27;Nock already overrode http.ClientRequest&#x27;);
+    throw new Error('Nock already overrode http.ClientRequest');
   }
 
   // ----- Extending http.ClientRequest
@@ -2968,8 +2960,8 @@ nock.enableNetConnect(&#x27;amazon.com&#x27;);
     //  Filter the interceptors per request options.
     var interceptors = interceptorsFor(options);
 
-    if (isOn() &#x26;&#x26; interceptors) {
-      debug(&#x27;using&#x27;, interceptors.length, &#x27;interceptors&#x27;);
+    if (isOn() &amp;&amp; interceptors) {
+      debug('using', interceptors.length, 'interceptors');
 
       //  Use filtered interceptors to intercept requests.
       var overrider = RequestOverrider(this, options, interceptors, remove, cb);
@@ -2979,7 +2971,7 @@ nock.enableNetConnect(&#x27;amazon.com&#x27;);
         }
       }
     } else {
-      debug(&#x27;falling back to original ClientRequest&#x27;);
+      debug('falling back to original ClientRequest');
 
       //  Fallback to original ClientRequest if nock is off or the net connection is enabled.
       if(isOff() || isEnabledForNetConnect(options)) {
@@ -2987,7 +2979,7 @@ nock.enableNetConnect(&#x27;amazon.com&#x27;);
       } else {
         timers.setImmediate(function () {
           var error = new NetConnectNotAllowedError(options.host, options.path);
-          this.emit(&#x27;error&#x27;, error);
+          this.emit('error', error);
         }.bind(this));
       }
     }
@@ -2998,12 +2990,12 @@ nock.enableNetConnect(&#x27;amazon.com&#x27;);
     inherits(OverriddenClientRequest, EventEmitter);
   }
 
-  //  Override the http module&#x27;s request but keep the original so that we can use it and later restore it.
+  //  Override the http module's request but keep the original so that we can use it and later restore it.
   //  NOTE: We only override http.ClientRequest as https module also uses it.
   originalClientRequest = http.ClientRequest;
   http.ClientRequest = OverriddenClientRequest;
 
-  debug(&#x27;ClientRequest overridden&#x27;);
+  debug('ClientRequest overridden');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -3076,17 +3068,17 @@ nock.enableNetConnect(&#x27;amazon.com&#x27;);
     baseUrl = options.basePath;
     key = options._key;
   } else {
-    proto = options.proto ? options.proto : &#x27;http&#x27;;
+    proto = options.proto ? options.proto : 'http';
 
     common.normalizeRequestOptions(options);
-    baseUrl = proto + &#x27;://&#x27; + options.host;
-    method = options.method &#x26;&#x26; options.method.toUpperCase() || &#x27;GET&#x27;;
-    key = method + &#x27; &#x27; + baseUrl + (options.path || &#x27;/&#x27;);
+    baseUrl = proto + '://' + options.host;
+    method = options.method &amp;&amp; options.method.toUpperCase() || 'GET';
+    key = method + ' ' + baseUrl + (options.path || '/');
   }
 
-  if (allInterceptors[baseUrl] &#x26;&#x26; allInterceptors[baseUrl].scopes.length &#x3e; 0) {
+  if (allInterceptors[baseUrl] &amp;&amp; allInterceptors[baseUrl].scopes.length &gt; 0) {
     if (key) {
-      for (var i = 0; i &#x3c; allInterceptors[baseUrl].scopes.length; i++) {
+      for (var i = 0; i &lt; allInterceptors[baseUrl].scopes.length; i++) {
         var interceptor = allInterceptors[baseUrl].scopes[i];
         if (interceptor._key === key) {
           allInterceptors[baseUrl].scopes.splice(i, 1);
@@ -3132,21 +3124,21 @@ nock.enableNetConnect(&#x27;amazon.com&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function restoreOverriddenClientRequest() {
-  debug(&#x27;restoring overriden ClientRequest&#x27;);
+  debug('restoring overriden ClientRequest');
 
   //  Restore the ClientRequest we have overridden.
   if(!originalClientRequest) {
-    debug(&#x27;- ClientRequest was not overridden&#x27;);
+    debug('- ClientRequest was not overridden');
   } else {
     http.ClientRequest = originalClientRequest;
     originalClientRequest = undefined;
 
-    debug(&#x27;- ClientRequest restored&#x27;);
+    debug('- ClientRequest restored');
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  debug(thisRecordingId, &#x27;restoring overridden requests before new overrides&#x27;);
-  //  To preserve backward compatibility (starting recording wasn&#x27;t throwing if nock was already active)
+  debug(thisRecordingId, 'restoring overridden requests before new overrides');
+  //  To preserve backward compatibility (starting recording wasn't throwing if nock was already active)
   //  we restore any requests that may have been overridden by other parts of nock (e.g. intercept)
   //  NOTE: This is hacky as hell but it keeps the backward compatibility *and* allows correct
   //    behavior in the face of other modules also overriding ClientRequest.
@@ -3159,7 +3151,7 @@ nock.enableNetConnect(&#x27;amazon.com&#x27;);
 
 var bodyChunks = [];
 
-if (typeof options == &#x27;string&#x27;) {
+if (typeof options == 'string') {
 ...</pre></li>
     </ul>
 
@@ -3182,18 +3174,18 @@ if (typeof options == &#x27;string&#x27;) {
     this.interceptorMatchHeaders = [];
     this.method = method.toUpperCase();
     this.uri = uri;
-    this._key = this.method + &#x27; &#x27; + scope.basePath + scope.basePathname + (typeof uri === &#x27;string&#x27; ? &#x27;&#x27; : &#x27;/&#x27;) + uri;
+    this._key = this.method + ' ' + scope.basePath + scope.basePathname + (typeof uri === 'string' ? '' : '/') + uri;
     this.basePath = this.scope.basePath;
-    this.path = (typeof uri === &#x27;string&#x27;) ? scope.basePathname + uri : uri;
+    this.path = (typeof uri === 'string') ? scope.basePathname + uri : uri;
 
-    this.baseUri = this.method + &#x27; &#x27; + scope.basePath + scope.basePathname;
+    this.baseUri = this.method + ' ' + scope.basePath + scope.basePathname;
     this.options = interceptorOptions || {};
     this.counter = 1;
     this._requestBody = requestBody;
 
     //  We use lower-case header field names throughout Nock.
-    this.reqheaders = common.headersFieldNamesToLowerCase((scope.scopeOptions &#x26;&#x26; scope.scopeOptions.reqheaders) || {});
-    this.badheaders = common.headersFieldsArrayToLowerCase((scope.scopeOptions &#x26;&#x26; scope.scopeOptions.badheaders) || []);
+    this.reqheaders = common.headersFieldNamesToLowerCase((scope.scopeOptions &amp;&amp; scope.scopeOptions.reqheaders) || {});
+    this.badheaders = common.headersFieldsArrayToLowerCase((scope.scopeOptions &amp;&amp; scope.scopeOptions.badheaders) || []);
 
 
     this.delayInMs = 0;
@@ -3219,10 +3211,10 @@ if (typeof options == &#x27;string&#x27;) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function basicAuth(options) {
-    var username = options[&#x27;user&#x27;];
-    var password = options[&#x27;pass&#x27;] || &#x27;&#x27;;
-    var name = &#x27;authorization&#x27;;
-    var value = &#x27;Basic &#x27; + new Buffer(username + &#x27;:&#x27; + password).toString(&#x27;base64&#x27;);
+    var username = options['user'];
+    var password = options['pass'] || '';
+    var name = 'authorization';
+    var value = 'Basic ' + new Buffer(username + ':' + password).toString('base64');
     this.interceptorMatchHeaders.push({ name: name, value: value });
     return this;
 }</pre></li>
@@ -3232,11 +3224,11 @@ When invoked with this option, Nock will not match the request if any of the `ba
 Basic authentication can be specified as follows:
 
 ```js
-var scope = nock(&#x27;http://www.example.com&#x27;)
-    .get(&#x27;/&#x27;)
+var scope = nock('http://www.example.com')
+    .get('/')
     .<span class="apidocCodeKeywordSpan">basicAuth</span>({
-      user: &#x27;john&#x27;,
-      pass: &#x27;doe&#x27;
+      user: 'john',
+      pass: 'doe'
     })
     .reply(200);
 ```
@@ -3263,7 +3255,7 @@ var scope = nock(&#x27;http://www.example.com&#x27;)
         headDelay = opts.head || 0;
         bodyDelay = opts.body || 0;
     } else {
-        throw new Error(&#x22;Unexpected input opts&#x22; + opts);
+        throw new Error("Unexpected input opts" + opts);
     }
 
     return this.delayConnection(headDelay)
@@ -3275,10 +3267,10 @@ var scope = nock(&#x27;http://www.example.com&#x27;)
 You are able to specify the number of milliseconds that your reply should be delayed.
 
 ```js
-nock(&#x27;http://my.server.com&#x27;)
- .get(&#x27;/&#x27;)
+nock('http://my.server.com')
+ .get('/')
  .<span class="apidocCodeKeywordSpan">delay</span>(2000) // 2 seconds delay will be applied to the response header.
- .reply(200, &#x27;&#x3c;html&#x3e;&#x3c;/html&#x3e;&#x27;)
+ .reply(200, '&lt;html&gt;&lt;/html&gt;')
 ```
 
 `delay()` could also be used as
@@ -3308,14 +3300,14 @@ You are able to specify the number of milliseconds that the response body should
 
 
 ```js
-nock(&#x27;http://my.server.com&#x27;)
-  .get(&#x27;/&#x27;)
+nock('http://my.server.com')
+  .get('/')
   .<span class="apidocCodeKeywordSpan">delayBody</span>(2000) // 2 seconds
-  .reply(200, &#x27;&#x3c;html&#x3e;&#x3c;/html&#x3e;&#x27;)
+  .reply(200, '&lt;html&gt;&lt;/html&gt;')
 ```
 
-NOTE: the [`&#x27;response&#x27;`](http://nodejs.org/api/http.html#http_event_response) event will occur immediately, but the [IncomingMessage
-](http://nodejs.org/api/http.html#http_http_incomingmessage) not emit it&#x27;s `&#x27;end&#x27;` event until after the delay.
+NOTE: the [`'response'`](http://nodejs.org/api/http.html#http_event_response) event will occur immediately, but the [IncomingMessage
+](http://nodejs.org/api/http.html#http_http_incomingmessage) not emit it's `'end'` event until after the delay.
 
 ## Delay the response
 ...</pre></li>
@@ -3339,7 +3331,7 @@ NOTE: the [`&#x27;response&#x27;`](http://nodejs.org/api/http.html#http_event_re
        headDelay = opts.head || 0;
        bodyDelay = opts.body || 0;
    } else {
-       throw new Error(&#x22;Unexpected input opts&#x22; + opts);
+       throw new Error("Unexpected input opts" + opts);
    }
 
    return this.<span class="apidocCodeKeywordSpan">delayConnection</span>(headDelay)
@@ -3363,21 +3355,21 @@ NOTE: the [`&#x27;response&#x27;`](http://nodejs.org/api/http.html#http_event_re
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function discard() {
-    if ((this.scope.shouldPersist() || this.counter &#x3e; 0) &#x26;&#x26; this.filePath) {
+    if ((this.scope.shouldPersist() || this.counter &gt; 0) &amp;&amp; this.filePath) {
         this.body = fs.createReadStream(this.filePath);
         this.body.pause();
     }
 
-    if (!this.scope.shouldPersist() &#x26;&#x26; this.counter &#x3c; 1) {
+    if (!this.scope.shouldPersist() &amp;&amp; this.counter &lt; 1) {
         this.scope.remove(this._key, this);
     }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
     req.headers = req._headers;
 
-    interceptor.scope.emit(&#x27;request&#x27;, req, interceptor);
+    interceptor.scope.emit('request', req, interceptor);
 
-    if (typeof interceptor.errorMessage !== &#x27;undefined&#x27;) {
+    if (typeof interceptor.errorMessage !== 'undefined') {
 interceptor.interceptionCounter++;
 remove(interceptor);
 interceptor.<span class="apidocCodeKeywordSpan">discard</span>();
@@ -3413,10 +3405,10 @@ This can be useful, for instance, if you have random or time-dependent data in y
 You can use a regexp for replacement, just like String.prototype.replace:
 
 ```js
-var scope = nock(&#x27;http://api.myservice.com&#x27;)
-                .<span class="apidocCodeKeywordSpan">filteringPath</span>(/password=[^&#x26;]*/g, &#x27;password=XXX&#x27;)
-                .get(&#x27;/users/1?password=XXX&#x27;)
-                .reply(200, &#x27;user&#x27;);
+var scope = nock('http://api.myservice.com')
+                .<span class="apidocCodeKeywordSpan">filteringPath</span>(/password=[^&amp;]*/g, 'password=XXX')
+                .get('/users/1?password=XXX')
+                .reply(200, 'user');
 ```
 
 Or you can use a function:
@@ -3467,14 +3459,14 @@ response.rawHeaders = (interceptor.rawHeaders || []).slice();
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function match(options, body, hostNameOnly) {
     if (debug.enabled) {
-        debug(&#x27;match %s, body = %s&#x27;, stringify(options), stringify(body));
+        debug('match %s, body = %s', stringify(options), stringify(body));
     }
 
     if (hostNameOnly) {
         return options.hostname === this.scope.urlParts.hostname;
     }
 
-    var method = (options.method || &#x27;GET&#x27;).toUpperCase()
+    var method = (options.method || 'GET').toUpperCase()
         , path = options.path
         , matches
         , matchKey
@@ -3483,7 +3475,7 @@ response.rawHeaders = (interceptor.rawHeaders || []).slice();
     if (this.scope.transformPathFunction) {
         path = this.scope.transformPathFunction(path);
     }
-    if (typeof(body) !== &#x27;string&#x27;) {
+    if (typeof(body) !== 'string') {
         body = body.toString();
     }
     if (this.scope.transformRequestBodyFunction) {
@@ -3499,7 +3491,7 @@ response.rawHeaders = (interceptor.rawHeaders || []).slice();
 
     if (!this.scope.matchHeaders.every(checkHeaders) ||
         !this.interceptorMatchHeaders.every(checkHeaders)) {
-        this.scope.logger(&#x27;headers don\&#x27;t match&#x27;);
+        this.scope.logger('headers don\'t match');
         return false;
     }
 
@@ -3516,7 +3508,7 @@ response.rawHeaders = (interceptor.rawHeaders || []).slice();
     }
 
     var reqContainsBadHeaders =
-        this.badheaders &#x26;&#x26;
+        this.badheaders &amp;&amp;
         _.some(this.badheaders, reqheaderContains);
 
     if (reqContainsBadHeaders) {
@@ -3525,18 +3517,18 @@ response.rawHeaders = (interceptor.rawHeaders || []).slice();
 
     //  If we have a filtered scope then we use it instead reconstructing
     //  the scope from the request options (proto, host and port) as these
-    //  two won&#x27;t necessarily match and we have to remove the scope that was
+    //  two won't necessarily match and we have to remove the scope that was
     //  matched (vs. that was defined).
     if (this.__nock_filteredScope) {
         matchKey = this.__nock_filteredScope;
     } else {
-        matchKey = proto + &#x27;://&#x27; + options.host;
+        matchKey = proto + '://' + options.host;
         if (
-            options.port &#x26;&#x26; options.host.indexOf(&#x27;:&#x27;) &#x3c; 0 &#x26;&#x26;
-            (options.port !== 80 || options.proto !== &#x27;http&#x27;) &#x26;&#x26;
-            (options.port !== 443 || options.proto !== &#x27;https&#x27;)
+            options.port &amp;&amp; options.host.indexOf(':') &lt; 0 &amp;&amp;
+            (options.port !== 80 || options.proto !== 'http') &amp;&amp;
+            (options.port !== 443 || options.proto !== 'https')
         ) {
-            matchKey += &#x22;:&#x22; + options.port;
+            matchKey += ":" + options.port;
         }
     }
 
@@ -3547,8 +3539,8 @@ response.rawHeaders = (interceptor.rawHeaders || []).slice();
     var queries;
 
     if (this.queries) {
-        queryIndex = path.indexOf(&#x27;?&#x27;);
-        queryString = (queryIndex !== -1) ? path.slice(queryIndex + 1) : &#x27;&#x27;;
+        queryIndex = path.indexOf('?');
+        queryString = (queryIndex !== -1) ? path.slice(queryIndex + 1) : '';
         queries = qs.parse(queryString);
 
         // Only check for query string matches if this.queries is an object
@@ -3564,8 +3556,8 @@ response.rawHeaders = (interceptor.rawHeaders || []).slice();
                 // passed query params is equal to the length of expected keys will prevent
                 // us from doing any value checking BEFORE we know if they have all the proper
                 // params
-                debug(&#x27;this.queries: %j&#x27;, this.queries);
-                debug(&#x27;queries: %j&#x27;, queries);
+                debug('this.queries: %j', this.queries);
+                debug('queries: %j', queries);
                 if (_.size(this.queries) !== _.size(queries)) {
                     matchQueries = false;
                 } else {
@@ -3578,12 +3570,12 @@ response.rawHeaders = (interceptor.rawHeaders || []).slice();
                     } else if (expVal instanceof RegExp) {
                       isMatch = c ...</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-  return &#x27;%&#x27; + c.charCodeAt(0).toString(16).toUpperCase();
+  return '%' + c.charCodeAt(0).toString(16).toUpperCase();
 });
 }
 
 function matchStringOrRegexp(target, pattern) {
-var str = target &#x26;&#x26; target.toString ? target.toString() : target;
+var str = target &amp;&amp; target.toString ? target.toString() : target;
 
 return pattern instanceof RegExp  ? str.<span class="apidocCodeKeywordSpan">match</span>(pattern) : str === pattern;
 }
@@ -3616,11 +3608,11 @@ switch (true) {
 If you need to match requests only if certain request headers match, you can.
 
 ```js
-var scope = nock(&#x27;http://api.myservice.com&#x27;)
-                .<span class="apidocCodeKeywordSpan">matchHeader</span>(&#x27;accept&#x27;, &#x27;application/json&#x27;)
-                .get(&#x27;/&#x27;)
+var scope = nock('http://api.myservice.com')
+                .<span class="apidocCodeKeywordSpan">matchHeader</span>('accept', 'application/json')
+                .get('/')
                 .reply(200, {
-                  data: &#x27;hello world&#x27;
+                  data: 'hello world'
                 })
 ```
 
@@ -3638,7 +3630,7 @@ You can also use a regexp for the header body.
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function matchIndependentOfBody(options) {
-    var method = (options.method || &#x27;GET&#x27;).toUpperCase()
+    var method = (options.method || 'GET').toUpperCase()
         , path = options.path
         , proto = options.proto;
 
@@ -3647,7 +3639,7 @@ You can also use a regexp for the header body.
     }
 
     var checkHeaders = function(header) {
-        return options.getHeader &#x26;&#x26; common.matchStringOrRegexp(options.getHeader(header.name), header.value);
+        return options.getHeader &amp;&amp; common.matchStringOrRegexp(options.getHeader(header.name), header.value);
     };
 
     if (!this.scope.matchHeaders.every(checkHeaders) ||
@@ -3655,13 +3647,13 @@ You can also use a regexp for the header body.
         return false;
     }
 
-    var matchKey = method + &#x27; &#x27; + proto + &#x27;://&#x27; + options.host + path;
+    var matchKey = method + ' ' + proto + '://' + options.host + path;
     return this._key === matchKey;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
     var interceptors = interceptorsFor(options)
 
-    if (isOn() &#x26;&#x26; interceptors) {
+    if (isOn() &amp;&amp; interceptors) {
 var matches = false,
     allowUnmocked = false;
 
@@ -3673,7 +3665,7 @@ allowUnmocked = !! _.find(interceptors, function(interceptor) {
   return interceptor.options.allowUnmocked;
 });
 
-if (! matches &#x26;&#x26; allowUnmocked) {
+if (! matches &amp;&amp; allowUnmocked) {
 ...</pre></li>
     </ul>
 
@@ -3690,17 +3682,17 @@ if (! matches &#x26;&#x26; allowUnmocked) {
     return this.times(1);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-http.get(&#x27;http://zombo.com/&#x27;); // respond body &#x22;Ok&#x22;
-http.get(&#x27;http://zombo.com/&#x27;); // respond with zombo.com result
+http.get('http://zombo.com/'); // respond body "Ok"
+http.get('http://zombo.com/'); // respond with zombo.com result
 ```
 
 Sugar syntax
 
 ```js
-nock(&#x27;http://zombo.com&#x27;).get(&#x27;/&#x27;).<span class="apidocCodeKeywordSpan">once</span>().reply(200, &#x27;Ok&#x27
+nock('http://zombo.com').get('/').<span class="apidocCodeKeywordSpan">once</span>().reply(200, 'Ok'
 ;);
-nock(&#x27;http://zombo.com&#x27;).get(&#x27;/&#x27;).twice().reply(200, &#x27;Ok&#x27;);
-nock(&#x27;http://zombo.com&#x27;).get(&#x27;/&#x27;).thrice().reply(200, &#x27;Ok&#x27;);
+nock('http://zombo.com').get('/').twice().reply(200, 'Ok');
+nock('http://zombo.com').get('/').thrice().reply(200, 'Ok');
 ```
 
 ## Delay the response body
@@ -3725,13 +3717,13 @@ You are able to specify the number of milliseconds that the response body should
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 example.pendingMocks() // []
-example.get(&#x22;/pathA&#x22;).reply(200);
-example.pendingMocks() // [&#x22;GET http://example.com:80/path&#x22;]
+example.get("/pathA").reply(200);
+example.pendingMocks() // ["GET http://example.com:80/path"]
 
 // ...After a request to example.com/pathA:
 example.pendingMocks() // []
 
-example.get(&#x22;/pathB&#x22;).<span class="apidocCodeKeywordSpan">optionally</span>().reply(200);
+example.get("/pathB").<span class="apidocCodeKeywordSpan">optionally</span>().reply(200);
 example.pendingMocks() // []
 ```
 
@@ -3779,16 +3771,16 @@ If you need some request on the same host name to be mocked and some others to *
 Nock understands query strings. Instead of placing the entire URL, you can specify the query part as an object:
 
 ```js
-nock(&#x27;http://example.com&#x27;)
-  .get(&#x27;/users&#x27;)
-  .<span class="apidocCodeKeywordSpan">query</span>({name: &#x27;pedro&#x27;, surname: &#x27;teixeira&#x27;})
-  .reply(200, {results: [{id: &#x27;pgte&#x27;}]});
+nock('http://example.com')
+  .get('/users')
+  .<span class="apidocCodeKeywordSpan">query</span>({name: 'pedro', surname: 'teixeira'})
+  .reply(200, {results: [{id: 'pgte'}]});
 ```
 
 Nock supports array-style/object-style query parameters. The encoding format matches with request module.
 
 ```js
-nock(&#x27;http://example.com&#x27;)
+nock('http://example.com')
 ...</pre></li>
     </ul>
 
@@ -3802,7 +3794,7 @@ nock(&#x27;http://example.com&#x27;)
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function reply(statusCode, body, rawHeaders) {
-    if (arguments.length &#x3c;= 2 &#x26;&#x26; _.isFunction(statusCode)) {
+    if (arguments.length &lt;= 2 &amp;&amp; _.isFunction(statusCode)) {
         body = statusCode;
         statusCode = 200;
     }
@@ -3821,7 +3813,7 @@ nock(&#x27;http://example.com&#x27;)
 
     if (this.scope.date) {
         headers = headers || {};
-        headers[&#x27;date&#x27;] = this.scope.date.toUTCString();
+        headers['date'] = this.scope.date.toUTCString();
     }
 
     if (headers !== undefined) {
@@ -3838,30 +3830,30 @@ nock(&#x27;http://example.com&#x27;)
         //  We use lower-case headers throughout Nock.
         this.headers = common.headersFieldNamesToLowerCase(headers);
 
-        debug(&#x27;reply.headers:&#x27;, this.headers);
-        debug(&#x27;reply.rawHeaders:&#x27;, this.rawHeaders);
+        debug('reply.headers:', this.headers);
+        debug('reply.rawHeaders:', this.rawHeaders);
     }
 
     //  If the content is not encoded we may need to transform the response body.
     //  Otherwise we leave it as it is.
     if (!common.isContentEncoded(this.headers)) {
-        if (body &#x26;&#x26; typeof(body) !== &#x27;string&#x27; &#x26;&#x26;
-            typeof(body) !== &#x27;function&#x27; &#x26;&#x26;
-            !Buffer.isBuffer(body) &#x26;&#x26;
+        if (body &amp;&amp; typeof(body) !== 'string' &amp;&amp;
+            typeof(body) !== 'function' &amp;&amp;
+            !Buffer.isBuffer(body) &amp;&amp;
             !common.isStream(body)) {
             try {
                 body = stringify(body);
                 if (!this.headers) {
                     this.headers = {};
                 }
-                if (!this.headers[&#x27;content-type&#x27;]) {
-                    this.headers[&#x27;content-type&#x27;] = &#x27;application/json&#x27;;
+                if (!this.headers['content-type']) {
+                    this.headers['content-type'] = 'application/json';
                 }
                 if (this.scope.contentLen) {
-                    this.headers[&#x27;content-length&#x27;] = body.length;
+                    this.headers['content-length'] = body.length;
                 }
             } catch(err) {
-                throw new Error(&#x27;Error encoding response body into JSON&#x27;);
+                throw new Error('Error encoding response body into JSON');
             }
         }
     }
@@ -3875,15 +3867,15 @@ nock(&#x27;http://example.com&#x27;)
 On your test, you can setup your mocking object like this:
 
 ```js
-var nock = require(&#x27;nock&#x27;);
+var nock = require('nock');
 
-var couchdb = nock(&#x27;http://myapp.iriscouch.com&#x27;)
-                .get(&#x27;/users/1&#x27;)
+var couchdb = nock('http://myapp.iriscouch.com')
+                .get('/users/1')
                 .<span class="apidocCodeKeywordSpan">reply</span>(200, {
-                  _id: &#x27;123ABC&#x27;,
-                  _rev: &#x27;946B7D1C&#x27;,
-                  username: &#x27;pgte&#x27;,
-                  email: &#x27;pedro.teixeira@gmail.com&#x27;
+                  _id: '123ABC',
+                  _rev: '946B7D1C',
+                  username: 'pgte',
+                  email: 'pedro.teixeira@gmail.com'
                  });
 ```
 ...</pre></li>
@@ -3912,16 +3904,16 @@ var couchdb = nock(&#x27;http://myapp.iriscouch.com&#x27;)
 You can reply with an error like this:
 
 ```js
-nock(&#x27;http://www.google.com&#x27;)
- .get(&#x27;/cat-poems&#x27;)
- .<span class="apidocCodeKeywordSpan">replyWithError</span>(&#x27;something awful happened&#x27;);
+nock('http://www.google.com')
+ .get('/cat-poems')
+ .<span class="apidocCodeKeywordSpan">replyWithError</span>('something awful happened');
 ```
 
 JSON error responses are allowed too:
 
 ```js
-nock(&#x27;http://www.google.com&#x27;)
-.get(&#x27;/cat-poems&#x27;)
+nock('http://www.google.com')
+.get('/cat-poems')
 ...</pre></li>
     </ul>
 
@@ -3936,7 +3928,7 @@ nock(&#x27;http://www.google.com&#x27;)
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function replyWithFile(statusCode, filePath, headers) {
     if (! fs) {
-        throw new Error(&#x27;No fs&#x27;);
+        throw new Error('No fs');
     }
     var readStream = fs.createReadStream(filePath);
     readStream.pause();
@@ -3949,16 +3941,16 @@ nock(&#x27;http://www.google.com&#x27;)
 or even as a file:
 
 ```js
-var scope = nock(&#x27;http://myapp.iriscouch.com&#x27;)
-             .get(&#x27;/&#x27;)
-             .<span class="apidocCodeKeywordSpan">replyWithFile</span>(200, __dirname + &#x27;/replies/user.json&#x27;);
+var scope = nock('http://myapp.iriscouch.com')
+             .get('/')
+             .<span class="apidocCodeKeywordSpan">replyWithFile</span>(200, __dirname + '/replies/user.json');
 ```
 
 Instead of an object or a buffer you can also pass in a callback to be evaluated for the value of the response body:
 
 ```js
-var scope = nock(&#x27;http://www.google.com&#x27;)
-.filteringRequestBody(/.*/, &#x27;*&#x27;)
+var scope = nock('http://www.google.com')
+.filteringRequestBody(/.*/, '*')
 ...</pre></li>
     </ul>
 
@@ -3972,28 +3964,28 @@ var scope = nock(&#x27;http://www.google.com&#x27;)
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function reqheaderMatches(options, key) {
-    //  We don&#x27;t try to match request headers if these weren&#x27;t even specified in the request.
+    //  We don't try to match request headers if these weren't even specified in the request.
     if (! options.headers) {
         return true;
     }
 
     var reqHeader = this.reqheaders[key];
     var header = options.headers[key];
-    if (header &#x26;&#x26; (typeof header !== &#x27;string&#x27;) &#x26;&#x26; header.toString) {
+    if (header &amp;&amp; (typeof header !== 'string') &amp;&amp; header.toString) {
         header = header.toString();
     }
 
-    //  We skip &#x27;host&#x27; header comparison unless it&#x27;s available in both mock and actual request.
-    //  This because &#x27;host&#x27; may get inserted by Nock itself and then get recorder.
+    //  We skip 'host' header comparison unless it's available in both mock and actual request.
+    //  This because 'host' may get inserted by Nock itself and then get recorder.
     //  NOTE: We use lower-case header field names throughout Nock.
-    if (key === &#x27;host&#x27; &#x26;&#x26;
+    if (key === 'host' &amp;&amp;
         (_.isUndefined(header) ||
         _.isUndefined(reqHeader)))
     {
         return true;
     }
 
-    if (reqHeader &#x26;&#x26; header) {
+    if (reqHeader &amp;&amp; header) {
         if (_.isFunction(reqHeader)) {
             return reqHeader(header);
         } else if (common.matchStringOrRegexp(header, reqHeader)) {
@@ -4001,7 +3993,7 @@ var scope = nock(&#x27;http://www.google.com&#x27;)
         }
     }
 
-    debug(&#x27;request header field doesn\&#x27;t match:&#x27;, key, header, reqHeader);
+    debug('request header field doesn\'t match:', key, header, reqHeader);
     return false;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -4026,16 +4018,16 @@ var scope = nock(&#x27;http://www.google.com&#x27;)
 You are able to specify the number of milliseconds that your connection should be idle, to simulate a socket timeout.
 
 ```js
-nock(&#x27;http://my.server.com&#x27;)
-  .get(&#x27;/&#x27;)
+nock('http://my.server.com')
+  .get('/')
   .<span class="apidocCodeKeywordSpan">socketDelay</span>(2000) // 2 seconds
-  .reply(200, &#x27;&#x3c;html&#x3e;&#x3c;/html&#x3e;&#x27;)
+  .reply(200, '&lt;html&gt;&lt;/html&gt;')
 ```
 
 To test a request like the following:
 
 ```js
-req = http.request(&#x27;http://my.server.com&#x27;, function(res) {
+req = http.request('http://my.server.com', function(res) {
 ...</pre></li>
     </ul>
 
@@ -4057,9 +4049,9 @@ req = http.request(&#x27;http://my.server.com&#x27;, function(res) {
 Sugar syntax
 
 ```js
-nock(&#x27;http://zombo.com&#x27;).get(&#x27;/&#x27;).once().reply(200, &#x27;Ok&#x27;);
-nock(&#x27;http://zombo.com&#x27;).get(&#x27;/&#x27;).twice().reply(200, &#x27;Ok&#x27;);
-nock(&#x27;http://zombo.com&#x27;).get(&#x27;/&#x27;).<span class="apidocCodeKeywordSpan">thrice</span>().reply(200, &#x27;Ok&#x27
+nock('http://zombo.com').get('/').once().reply(200, 'Ok');
+nock('http://zombo.com').get('/').twice().reply(200, 'Ok');
+nock('http://zombo.com').get('/').<span class="apidocCodeKeywordSpan">thrice</span>().reply(200, 'Ok'
 ;);
 ```
 
@@ -4080,7 +4072,7 @@ You are able to specify the number of milliseconds that the response body should
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function times(newCounter) {
-    if (newCounter &#x3c; 1) {
+    if (newCounter &lt; 1) {
         return this;
     }
 
@@ -4096,14 +4088,14 @@ You are able to specify the number of milliseconds that the response body should
 You are able to specify the number of times to repeat the same response.
 
 ```js
-nock(&#x27;http://zombo.com&#x27;).get(&#x27;/&#x27;).<span class="apidocCodeKeywordSpan">times</span>(4).reply(200, &#x27;Ok&#x27
+nock('http://zombo.com').get('/').<span class="apidocCodeKeywordSpan">times</span>(4).reply(200, 'Ok'
 ;);
 
-http.get(&#x27;http://zombo.com/&#x27;); // respond body &#x22;Ok&#x22;
-http.get(&#x27;http://zombo.com/&#x27;); // respond body &#x22;Ok&#x22;
-http.get(&#x27;http://zombo.com/&#x27;); // respond body &#x22;Ok&#x22;
-http.get(&#x27;http://zombo.com/&#x27;); // respond body &#x22;Ok&#x22;
-http.get(&#x27;http://zombo.com/&#x27;); // respond with zombo.com result
+http.get('http://zombo.com/'); // respond body "Ok"
+http.get('http://zombo.com/'); // respond body "Ok"
+http.get('http://zombo.com/'); // respond body "Ok"
+http.get('http://zombo.com/'); // respond body "Ok"
+http.get('http://zombo.com/'); // respond with zombo.com result
 ```
 ...</pre></li>
     </ul>
@@ -4121,16 +4113,16 @@ http.get(&#x27;http://zombo.com/&#x27;); // respond with zombo.com result
     return this.times(2);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-http.get(&#x27;http://zombo.com/&#x27;); // respond with zombo.com result
+http.get('http://zombo.com/'); // respond with zombo.com result
 ```
 
 Sugar syntax
 
 ```js
-nock(&#x27;http://zombo.com&#x27;).get(&#x27;/&#x27;).once().reply(200, &#x27;Ok&#x27;);
-nock(&#x27;http://zombo.com&#x27;).get(&#x27;/&#x27;).<span class="apidocCodeKeywordSpan">twice</span>().reply(200, &#x27;Ok&#x27
+nock('http://zombo.com').get('/').once().reply(200, 'Ok');
+nock('http://zombo.com').get('/').<span class="apidocCodeKeywordSpan">twice</span>().reply(200, 'Ok'
 ;);
-nock(&#x27;http://zombo.com&#x27;).get(&#x27;/&#x27;).thrice().reply(200, &#x27;Ok&#x27;);
+nock('http://zombo.com').get('/').thrice().reply(200, 'Ok');
 ```
 
 ## Delay the response body
@@ -4185,7 +4177,7 @@ var nockCalls = nock.recorder.<span class="apidocCodeKeywordSpan">play</span>();
 
 The `nockCalls` var will contain an array of strings representing the generated code you need.
 
-Copy and paste that code into your tests, customize at will, and you&#x27;re done!
+Copy and paste that code into your tests, customize at will, and you're done!
 
 (Remember that you should do this one test at a time).
 ...</pre></li>
@@ -4206,32 +4198,32 @@ Copy and paste that code into your tests, customize at will, and you&#x27;re don
   currentRecordingId = currentRecordingId + 1;
   var thisRecordingId = currentRecordingId;
 
-  debug(&#x27;start recording&#x27;, thisRecordingId, JSON.stringify(rec_options));
+  debug('start recording', thisRecordingId, JSON.stringify(rec_options));
 
   //  Trying to start recording with recording already in progress implies an error
   //  in the recording configuration (double recording makes no sense and used to lead
   //  to duplicates in output)
   if(recordingInProgress) {
-    throw new Error(&#x27;Nock recording already in progress&#x27;);
+    throw new Error('Nock recording already in progress');
   }
 
   recordingInProgress = true;
 
   //  Originaly the parameters was a dont_print boolean flag.
   //  To keep the existing code compatible we take that case into account.
-  var optionsIsObject = typeof rec_options === &#x27;object&#x27;;
-  var dont_print = (typeof rec_options === &#x27;boolean&#x27; &#x26;&#x26; rec_options) ||
-      (optionsIsObject &#x26;&#x26; rec_options.dont_print);
-  var output_objects = optionsIsObject &#x26;&#x26; rec_options.output_objects;
-  var enable_reqheaders_recording = optionsIsObject &#x26;&#x26; rec_options.enable_reqheaders_recording;
-  var logging = (optionsIsObject &#x26;&#x26; rec_options.logging) || console.log;
+  var optionsIsObject = typeof rec_options === 'object';
+  var dont_print = (typeof rec_options === 'boolean' &amp;&amp; rec_options) ||
+      (optionsIsObject &amp;&amp; rec_options.dont_print);
+  var output_objects = optionsIsObject &amp;&amp; rec_options.output_objects;
+  var enable_reqheaders_recording = optionsIsObject &amp;&amp; rec_options.enable_reqheaders_recording;
+  var logging = (optionsIsObject &amp;&amp; rec_options.logging) || console.log;
   var use_separator = true;
-  if (optionsIsObject &#x26;&#x26; _.has(rec_options, &#x27;use_separator&#x27;)) {
+  if (optionsIsObject &amp;&amp; _.has(rec_options, 'use_separator')) {
     use_separator = rec_options.use_separator;
   }
 
-  debug(thisRecordingId, &#x27;restoring overridden requests before new overrides&#x27;);
-  //  To preserve backward compatibility (starting recording wasn&#x27;t throwing if nock was already active)
+  debug(thisRecordingId, 'restoring overridden requests before new overrides');
+  //  To preserve backward compatibility (starting recording wasn't throwing if nock was already active)
   //  we restore any requests that may have been overridden by other parts of nock (e.g. intercept)
   //  NOTE: This is hacky as hell but it keeps the backward compatibility *and* allows correct
   //    behavior in the face of other modules also overriding ClientRequest.
@@ -4244,17 +4236,17 @@ Copy and paste that code into your tests, customize at will, and you&#x27;re don
 
     var bodyChunks = [];
 
-    if (typeof options == &#x27;string&#x27;) {
+    if (typeof options == 'string') {
       var url = URL.parse(options);
       options = {
         hostname: url.hostname,
-        method: &#x27;GET&#x27;,
+        method: 'GET',
         port: url.port,
         path: url.path
       };
     }
 
-    // Node 0.11 https.request calls http.request -- don&#x27;t want to record things
+    // Node 0.11 https.request calls http.request -- don't want to record things
     // twice.
     if (options._recording) {
       return overriddenRequest(options, callback);
@@ -4263,15 +4255,15 @@ Copy and paste that code into your tests, customize at will, and you&#x27;re don
 
     var req = overriddenRequest(options, function(res) {
 
-      debug(thisRecordingId, &#x27;intercepting&#x27;, proto, &#x27;request to record&#x27;);
+      debug(thisRecordingId, 'intercepting', proto, 'request to record');
 
-      if (typeof options === &#x27;string&#x27;) {
+      if (typeof options === 'string') {
         options = parse(options);
       }
 
-      //  We put our &#x27;end&#x27; listener to the front of the listener array.
-      res.once(&#x27;end&#x27;, function() {
-        debug(thisRecordingId, proto, &#x27;intercepted request ended&#x27;);
+      //  We put our 'end' listener to the front of the listener array.
+      res.once('end', function() {
+        debug(thisRecordingId, proto, 'intercepted request ended');
 
         var out;
         if(output_objects) {
@@ -4279,7 +4271,7 @@ Copy and paste that code into your tests, customize at will, and you&#x27;re don
           if(out.reqheaders) {
             //  We never record user-agent headers as they are worse than useless -
             //  they actually make testing more difficult without providing any benefit (see README)
-            common.deleteHeadersField(out.reqheaders, &#x27;user-agent&#x27;);
+            common.deleteHeadersField(out.reqheaders, 'user-agent');
 
             //  Remove request headers completely unless it was explicitly enabled by the user (see README)
             if(!enable_reqheaders_recording) {
@@ -4290,10 +4282,10 @@ Copy and paste that code into your tests, customize at will, and you&#x27;re don
           out = generateRequestAndResponse(req, bodyChunks, options, res, dataChunks);
         }
 
-        debug(&#x27;out:&#x27;, out);
+        debug('out:', out);
 
         //  Check that the request was made during the current recording.
-        //  If it hasn&#x27;t then skip it. There is no other simple way to handle
+        //  If it hasn't then skip it. There is no other simple way to handle
         //  this as it depends on the timing of requests and responses. Throwing
         //  will make some recordings/unit tests faily randomly depending on how ...</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -4338,7 +4330,7 @@ Recording relies on intercepting real requests and answers and then persisting t
 
   options = options || {};
 
-  if (options.proto === &#x27;https&#x27;) {
+  if (options.proto === 'https') {
     this.authorized = true;
   }
 
@@ -4392,13 +4384,13 @@ Recording relies on intercepting real requests and answers and then persisting t
     <li>description and source-code<pre class="apidocCodePre">function applyDelay(delayMs) {
   this.totalDelayMs += delayMs;
 
-  if (this.timeoutMs &#x26;&#x26; this.totalDelayMs &#x3e; this.timeoutMs) {
-    debug(&#x27;socket timeout&#x27;);
+  if (this.timeoutMs &amp;&amp; this.totalDelayMs &gt; this.timeoutMs) {
+    debug('socket timeout');
     if (this.timeoutFunction) {
       this.timeoutFunction();
     }
     else {
-      this.emit(&#x27;timeout&#x27;);
+      this.emit('timeout');
     }
   }
 
@@ -4410,11 +4402,11 @@ Recording relies on intercepting real requests and answers and then persisting t
 
 if (aborted) { return; }
 
-if (interceptor.socketDelayInMs &#x26;&#x26; interceptor.socketDelayInMs &#x3e; 0) {
+if (interceptor.socketDelayInMs &amp;&amp; interceptor.socketDelayInMs &gt; 0) {
   req.socket.<span class="apidocCodeKeywordSpan">applyDelay</span>(interceptor.socketDelayInMs);
 }
 
-if (interceptor.delayConnectionInMs &#x26;&#x26; interceptor.delayConnectionInMs &#x3e; 0) {
+if (interceptor.delayConnectionInMs &amp;&amp; interceptor.delayConnectionInMs &gt; 0) {
   setTimeout(_respond, interceptor.delayConnectionInMs);
 } else {
   _respond();
@@ -4440,15 +4432,15 @@ if (interceptor.delayConnectionInMs &#x26;&#x26; interceptor.delayConnectionInMs
     end();
   }
   var err = new Error();
-  err.code = &#x27;aborted&#x27;;
-  response.emit(&#x27;close&#x27;, err);
+  err.code = 'aborted';
+  response.emit('close', err);
 
   req.socket.<span class="apidocCodeKeywordSpan">destroy</span>();
 
-  req.emit(&#x27;abort&#x27;);
+  req.emit('abort');
 
-  var connResetError = new Error(&#x27;socket hang up&#x27;);
-  connResetError.code = &#x27;ECONNRESET&#x27;;
+  var connResetError = new Error('socket hang up');
+  connResetError.code = 'ECONNRESET';
   emitError(connResetError);
 };
 ...</pre></li>
@@ -4464,7 +4456,7 @@ if (interceptor.delayConnectionInMs &#x26;&#x26; interceptor.delayConnectionInMs
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function getPeerCertificate() {
-  return new Buffer((Math.random() * 10000 + Date.now()).toString()).toString(&#x27;base64&#x27;);
+  return new Buffer((Math.random() * 10000 + Date.now()).toString()).toString('base64');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -4487,7 +4479,7 @@ if (interceptor.delayConnectionInMs &#x26;&#x26; interceptor.delayConnectionInMs
 To test a request like the following:
 
 ```js
-req = http.request(&#x27;http://my.server.com&#x27;, function(res) {
+req = http.request('http://my.server.com', function(res) {
   ...
 });
 req.<span class="apidocCodeKeywordSpan">setTimeout</span>(1000, function() {
@@ -4509,3 +4501,4 @@ NOTE: the timeout will be fired immediately, and will not leave the simulated co
     ]
 </div>
 </div>
+</body></html>

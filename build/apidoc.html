@@ -51,7 +51,7 @@
 
         href="https://github.com/node-nock/nock#readme"
 
-    >nock (v9.0.9)</a>
+    >nock (v9.0.11)</a>
 </h1>
 <h4>HTTP Server mocking for Node.js</h4>
 <div class="apidocSectionDiv"><a
@@ -3051,6 +3051,11 @@ nock.enableNetConnect(&#x27;amazon.com&#x27;);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function removeAll() {
+  Object.keys(allInterceptors).forEach(function(key) {
+    allInterceptors[key].scopes.forEach(function(interceptor) {
+      interceptor.scope.keyedInterceptors = {};
+    });
+  });
   allInterceptors = {};
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
