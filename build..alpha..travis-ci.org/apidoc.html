@@ -51,7 +51,7 @@
 
         href="https://github.com/node-nock/nock#readme"
 
-    >nock (v9.0.11)</a>
+    >nock (v9.0.13)</a>
 </h1>
 <h4>HTTP Server mocking for Node.js</h4>
 <div class="apidocSectionDiv"><a
@@ -60,6 +60,15 @@
 ><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.nock">module nock</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nock.nock">
+            function <span class="apidocSignatureSpan"></span>nock
+            <span class="apidocSignatureSpan">(basePath, options)</span>
+            </a>
+
+        </li>
 
         <li>
 
@@ -210,6 +219,15 @@
             <a class="apidocElementLiA" href="#apidoc.element.nock.restore">
             function <span class="apidocSignatureSpan">nock.</span>restore
             <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nock.scope">
+            function <span class="apidocSignatureSpan">nock.</span>scope
+            <span class="apidocSignatureSpan">(basePath, options)</span>
             </a>
 
         </li>
@@ -854,6 +872,157 @@
 
     </ol></li>
 
+    <li class="apidocModuleLi"><a href="#apidoc.module.nock.scope">module nock.scope</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nock.scope.scope">
+            function <span class="apidocSignatureSpan">nock.</span>scope
+            <span class="apidocSignatureSpan">(basePath, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nock.scope.activate">
+            function <span class="apidocSignatureSpan">nock.scope.</span>activate
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nock.scope.activeMocks">
+            function <span class="apidocSignatureSpan">nock.scope.</span>activeMocks
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nock.scope.back">
+            function <span class="apidocSignatureSpan">nock.scope.</span>back
+            <span class="apidocSignatureSpan">(fixtureName, options, nockedFn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nock.scope.cleanAll">
+            function <span class="apidocSignatureSpan">nock.scope.</span>cleanAll
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nock.scope.define">
+            function <span class="apidocSignatureSpan">nock.scope.</span>define
+            <span class="apidocSignatureSpan">(nockDefs)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nock.scope.disableNetConnect">
+            function <span class="apidocSignatureSpan">nock.scope.</span>disableNetConnect
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nock.scope.enableNetConnect">
+            function <span class="apidocSignatureSpan">nock.scope.</span>enableNetConnect
+            <span class="apidocSignatureSpan">(matcher)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nock.scope.isActive">
+            function <span class="apidocSignatureSpan">nock.scope.</span>isActive
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nock.scope.isDone">
+            function <span class="apidocSignatureSpan">nock.scope.</span>isDone
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nock.scope.load">
+            function <span class="apidocSignatureSpan">nock.scope.</span>load
+            <span class="apidocSignatureSpan">(path)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nock.scope.loadDefs">
+            function <span class="apidocSignatureSpan">nock.scope.</span>loadDefs
+            <span class="apidocSignatureSpan">(path)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nock.scope.pendingMocks">
+            function <span class="apidocSignatureSpan">nock.scope.</span>pendingMocks
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nock.scope.removeInterceptor">
+            function <span class="apidocSignatureSpan">nock.scope.</span>removeInterceptor
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.nock.scope.restore">
+            function <span class="apidocSignatureSpan">nock.scope.</span>restore
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">nock.scope.</span>emitter</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">nock.scope.</span>recorder</span>
+
+        </li>
+
+    </ol></li>
+
     <li class="apidocModuleLi"><a href="#apidoc.module.nock.socket">module nock.socket</a><ol>
 
         <li>
@@ -920,6 +1089,21 @@
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.nock" id="apidoc.module.nock">module nock</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.nock.nock" id="apidoc.element.nock.nock">
+        function <span class="apidocSignatureSpan"></span>nock
+        <span class="apidocSignatureSpan">(basePath, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function startScope(basePath, options) {
+  return new Scope(basePath, options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 
     <h2>
@@ -1629,6 +1813,21 @@ nock.<span class="apidocCodeKeywordSpan">restore</span>();
 
 You can bypass Nock completely by setting `NOCK_OFF` environment variable to `&#x22;true&#x22;`.
 ...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nock.scope" id="apidoc.element.nock.scope">
+        function <span class="apidocSignatureSpan">nock.</span>scope
+        <span class="apidocSignatureSpan">(basePath, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function startScope(basePath, options) {
+  return new Scope(basePath, options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
@@ -4314,6 +4513,621 @@ Recording relies on intercepting real requests and answers and then persisting t
 **ATTENTION!:** when recording is enabled, nock does no validation.
 ...</pre></li>
     </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.nock.scope" id="apidoc.module.nock.scope">module nock.scope</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.nock.scope.scope" id="apidoc.element.nock.scope.scope">
+        function <span class="apidocSignatureSpan">nock.</span>scope
+        <span class="apidocSignatureSpan">(basePath, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function startScope(basePath, options) {
+  return new Scope(basePath, options);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nock.scope.activate" id="apidoc.element.nock.scope.activate">
+        function <span class="apidocSignatureSpan">nock.scope.</span>activate
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function activate() {
+
+  if(originalClientRequest) {
+    throw new Error(&#x27;Nock already active&#x27;);
+  }
+
+  overrideClientRequest();
+
+  // ----- Overriding http.request and https.request:
+
+  common.overrideRequests(function(proto, overriddenRequest, options, callback) {
+    //  NOTE: overriddenRequest is already bound to its module.
+    var req,
+        res;
+
+    if (typeof options === &#x27;string&#x27;) {
+      options = parse(options);
+    }
+    options.proto = proto;
+
+    var interceptors = interceptorsFor(options)
+
+    if (isOn() &#x26;&#x26; interceptors) {
+      var matches = false,
+          allowUnmocked = false;
+
+      matches = !! _.find(interceptors, function(interceptor) {
+        return interceptor.matchIndependentOfBody(options);
+      });
+
+      allowUnmocked = !! _.find(interceptors, function(interceptor) {
+        return interceptor.options.allowUnmocked;
+      });
+
+      if (! matches &#x26;&#x26; allowUnmocked) {
+        if (proto === &#x27;https&#x27;) {
+          var ClientRequest = http.ClientRequest;
+          http.ClientRequest = originalClientRequest;
+          req = overriddenRequest(options, callback);
+          http.ClientRequest = ClientRequest;
+        } else {
+          req = overriddenRequest(options, callback);
+        }
+        globalEmitter.emit(&#x27;no match&#x27;, req);
+        return req;
+      }
+
+      //  NOTE: Since we already overrode the http.ClientRequest we are in fact constructing
+      //    our own OverriddenClientRequest.
+      req = new http.ClientRequest(options);
+
+      res = RequestOverrider(req, options, interceptors, remove);
+      if (callback) {
+        res.on(&#x27;response&#x27;, callback);
+      }
+      return req;
+    } else {
+      globalEmitter.emit(&#x27;no match&#x27;, options);
+      if (isOff() || isEnabledForNetConnect(options)) {
+        return overriddenRequest(options, callback);
+      } else {
+        var error = new NetConnectNotAllowedError(options.host, options.path);
+        return new ErroringClientRequest(error);
+      }
+    }
+  });
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nock.scope.activeMocks" id="apidoc.element.nock.scope.activeMocks">
+        function <span class="apidocSignatureSpan">nock.scope.</span>activeMocks
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function activeMocks() {
+  return _.flatten(_.map(interceptorScopes(), function(scope) {
+    return scope.activeMocks();
+  }));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* [Optional Requests](#optional-requests)
+* [Allow __unmocked__ requests on a mocked hostname](#allow-__unmocked__-requests-on-a-mocked-hostname)
+- [Expectations](#expectations)
+* [.isDone()](#isdone)
+* [.cleanAll()](#cleanall)
+* [.persist()](#persist)
+* [.pendingMocks()](#pendingmocks)
+* [.<span class="apidocCodeKeywordSpan">activeMocks</span>()](#activemocks)
+- [Logging](#logging)
+- [Restoring](#restoring)
+- [Turning Nock Off (experimental!)](#turning-nock-off-experimental)
+- [Enable/Disable real HTTP request](#enabledisable-real-http-request)
+- [Recording](#recording)
+* [`dont_print` option](#dont_print-option)
+* [`output_objects` option](#output_objects-option)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nock.scope.back" id="apidoc.element.nock.scope.back">
+        function <span class="apidocSignatureSpan">nock.scope.</span>back
+        <span class="apidocSignatureSpan">(fixtureName, options, nockedFn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Back(fixtureName, options, nockedFn) {
+  if(!Back.fixtures) {
+    throw new Error(  &#x27;Back requires nock.back.fixtures to be set\n&#x27; +
+                      &#x27;Ex:\n&#x27; +
+                      &#x27;\trequire(nock).back.fixtures = \&#x27;/path/to/fixures/\&#x27;&#x27;);
+  }
+
+  if( arguments.length === 2 ) {
+    nockedFn = options;
+    options = {};
+  }
+
+  _mode.setup();
+
+  var fixture = path.join(Back.fixtures, fixtureName)
+    , context = _mode.start(fixture, options);
+
+
+  var nockDone = function () {
+    _mode.finish(fixture, options, context);
+  };
+
+  debug(&#x27;context:&#x27;, context);
+
+  nockedFn.call(context, nockDone);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nock.scope.cleanAll" id="apidoc.element.nock.scope.cleanAll">
+        function <span class="apidocSignatureSpan">nock.scope.</span>cleanAll
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function cleanAll() {
+  globalIntercept.removeAll();
+  return module.exports;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  * [Path filtering](#path-filtering)
+  * [Request Body filtering](#request-body-filtering)
+  * [Request Headers Matching](#request-headers-matching)
+  * [Optional Requests](#optional-requests)
+  * [Allow __unmocked__ requests on a mocked hostname](#allow-__unmocked__-requests-on-a-mocked-hostname)
+- [Expectations](#expectations)
+  * [.isDone()](#isdone)
+  * [.<span class="apidocCodeKeywordSpan">cleanAll</span>()](#cleanall)
+  * [.persist()](#persist)
+  * [.pendingMocks()](#pendingmocks)
+  * [.activeMocks()](#activemocks)
+- [Logging](#logging)
+- [Restoring](#restoring)
+- [Turning Nock Off (experimental!)](#turning-nock-off-experimental)
+- [Enable/Disable real HTTP request](#enabledisable-real-http-request)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nock.scope.define" id="apidoc.element.nock.scope.define">
+        function <span class="apidocSignatureSpan">nock.scope.</span>define
+        <span class="apidocSignatureSpan">(nockDefs)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function define(nockDefs) {
+
+  var nocks     = [];
+
+  nockDefs.forEach(function(nockDef) {
+
+    var nscope     = getScopeFromDefinition(nockDef)
+      , npath      = nockDef.path
+      , method     = nockDef.method.toLowerCase() || &#x22;get&#x22;
+      , status     = getStatusFromDefinition(nockDef)
+      , rawHeaders = nockDef.rawHeaders || []
+      , reqheaders = nockDef.reqheaders || {}
+      , body       = nockDef.body       || &#x27;&#x27;
+      , options    = nockDef.options    || {};
+
+    //  We use request headers for both filtering (see below) and mocking.
+    //  Here we are setting up mocked request headers but we don&#x27;t want to
+    //  be changing the user&#x27;s options object so we clone it first.
+    options = _.clone(options) || {};
+    options.reqheaders = reqheaders;
+
+    //  Response is not always JSON as it could be a string or binary data or
+    //  even an array of binary buffers (e.g. when content is enconded)
+    var response;
+    if (!nockDef.response) {
+      response = &#x27;&#x27;;
+    } else {
+      response = _.isString(nockDef.response) ? tryJsonParse(nockDef.response) : nockDef.response;
+    }
+
+    var nock;
+    if (body===&#x22;*&#x22;) {
+      nock = startScope(nscope, options).filteringRequestBody(function() {
+        return &#x22;*&#x22;;
+      })[method](npath, &#x22;*&#x22;).reply(status, response, rawHeaders);
+    } else {
+      nock = startScope(nscope, options);
+      //  If request headers were specified filter by them.
+      if (_.size(reqheaders) &#x3e; 0) {
+        for (var k in reqheaders) {
+          nock.matchHeader(k, reqheaders[k]);
+        }
+      }
+      if (nockDef.filteringRequestBody) {
+        nock.filteringRequestBody(nockDef.filteringRequestBody);
+      }
+      nock.intercept(npath, method, body).reply(status, response, rawHeaders);
+    }
+
+    nocks.push(nock);
+
+  });
+
+  return nocks;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  return body.replace(/(timestamp):([0-9]+)/g, function(match, key, value) {
+    return key + &#x27;:&#x27; + recordedTimestamp;
+  });
+};
+});
+```
+
+Alternatively, if you need to pre-process the captured nock definitions before using them (e.g. to add scope filtering) then you
+ can use `nock.loadDefs(path)` and `nock.<span class="apidocCodeKeywordSpan">define</span>(nockDefs)`. Shown here is scope filtering
+ for Dropbox node module which constantly changes the subdomain to which it sends the requests:
+
+```js
+//  Pre-process the nock definitions as scope filtering has to be defined before the nocks are defined (due to its very hacky nature
+).
+var nockDefs = nock.loadDefs(pathToJson);
+nockDefs.forEach(function(def) {
+//  Do something with the definition object e.g. scope filtering.
+def.options = def.options || {};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nock.scope.disableNetConnect" id="apidoc.element.nock.scope.disableNetConnect">
+        function <span class="apidocSignatureSpan">nock.scope.</span>disableNetConnect
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function disableNetConnect() {
+  allowNetConnect = undefined;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+# Enable/Disable real HTTP request
+
+As default, if you do not mock a host, a real HTTP request will do, but sometimes you should not permit real HTTP request, so...
+
+For disabling real http requests.
+
+```js
+nock.<span class="apidocCodeKeywordSpan">disableNetConnect</span>();
+```
+
+So, if you try to request any host not &#x27;nocked&#x27;, it will thrown an `NetConnectNotAllowedError`.
+
+```js
+nock.disableNetConnect();
+var req = http.get(&#x27;http://google.com/&#x27;);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nock.scope.enableNetConnect" id="apidoc.element.nock.scope.enableNetConnect">
+        function <span class="apidocSignatureSpan">nock.scope.</span>enableNetConnect
+        <span class="apidocSignatureSpan">(matcher)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function enableNetConnect(matcher) {
+  if (_.isString(matcher)) {
+    allowNetConnect = new RegExp(matcher);
+  } else if (_.isObject(matcher) &#x26;&#x26; _.isFunction(matcher.test)) {
+    allowNetConnect = matcher;
+  } else {
+    allowNetConnect = /.*/;
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+// This code will log a NetConnectNotAllowedError with message:
+// Nock: Not allow net connect for &#x22;google.com:80&#x22;
+```
+
+For enabling real HTTP requests (the default behaviour).
+
+```js
+nock.<span class="apidocCodeKeywordSpan">enableNetConnect</span>();
+```
+
+You could allow real HTTP request for certain host names by providing a string or a regular expression for the hostname:
+
+```js
+// using a string
+nock.enableNetConnect(&#x27;amazon.com&#x27;);
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nock.scope.isActive" id="apidoc.element.nock.scope.isActive">
+        function <span class="apidocSignatureSpan">nock.scope.</span>isActive
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function isActive() {
+
+  //  If ClientRequest has been overwritten by Nock then originalClientRequest is not undefined.
+  //  This means that Nock has been activated.
+  return !_.isUndefined(originalClientRequest);
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nock.scope.isDone" id="apidoc.element.nock.scope.isDone">
+        function <span class="apidocSignatureSpan">nock.scope.</span>isDone
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function isDone() {
+  return _.every(interceptorScopes(), function(scope) {
+    return scope.isDone();
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  * [Scope filtering](#scope-filtering)
+  * [Path filtering](#path-filtering)
+  * [Request Body filtering](#request-body-filtering)
+  * [Request Headers Matching](#request-headers-matching)
+  * [Optional Requests](#optional-requests)
+  * [Allow __unmocked__ requests on a mocked hostname](#allow-__unmocked__-requests-on-a-mocked-hostname)
+- [Expectations](#expectations)
+  * [.<span class="apidocCodeKeywordSpan">isDone</span>()](#isdone)
+  * [.cleanAll()](#cleanall)
+  * [.persist()](#persist)
+  * [.pendingMocks()](#pendingmocks)
+  * [.activeMocks()](#activemocks)
+- [Logging](#logging)
+- [Restoring](#restoring)
+- [Turning Nock Off (experimental!)](#turning-nock-off-experimental)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nock.scope.load" id="apidoc.element.nock.scope.load">
+        function <span class="apidocSignatureSpan">nock.scope.</span>load
+        <span class="apidocSignatureSpan">(path)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function load(path) {
+  return define(loadDefs(path));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* `path` - the path of the call (e.g. `&#x27;/pgte/nock&#x27;`)
+* `body` - the body of the call, if any
+* `status` - the HTTP status of the reply (e.g. `200`)
+* `response` - the body of the reply which can be a JSON, string, hex string representing binary buffers or an array of such hex
+ strings (when handling `content-encoded` in reply header)
+* `headers` - the headers of the reply
+* `reqheader` - the headers of the request
+
+If you save this as a JSON file, you can load them directly through `nock.<span class="apidocCodeKeywordSpan">load</span>(path)`.
+Then you can post-process them before using them in the tests for example to add them request body filtering (shown here fixing
+timestamps to match the ones captured during recording):
+
+```js
+nocks = nock.load(pathToJson);
+nocks.forEach(function(nock) {
+nock.filteringRequestBody = function(body, aRecordedBody) {
+  if (typeof(body) !== &#x27;string&#x27; || typeof(aRecordedBody) !== &#x27;string&#x27;) {
+    return body;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nock.scope.loadDefs" id="apidoc.element.nock.scope.loadDefs">
+        function <span class="apidocSignatureSpan">nock.scope.</span>loadDefs
+        <span class="apidocSignatureSpan">(path)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function loadDefs(path) {
+  if (! fs) {
+    throw new Error(&#x27;No fs&#x27;);
+  }
+
+  var contents = fs.readFileSync(path);
+  return JSON.parse(contents);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  return body.replace(/(timestamp):([0-9]+)/g, function(match, key, value) {
+    return key + &#x27;:&#x27; + recordedTimestamp;
+  });
+};
+});
+```
+
+Alternatively, if you need to pre-process the captured nock definitions before using them (e.g. to add scope filtering) then you
+ can use `nock.<span class="apidocCodeKeywordSpan">loadDefs</span>(path)` and `nock.define(nockDefs)`. Shown here is scope filtering
+ for Dropbox node module which constantly changes the subdomain to which it sends the requests:
+
+```js
+//  Pre-process the nock definitions as scope filtering has to be defined before the nocks are defined (due to its very hacky nature
+).
+var nockDefs = nock.loadDefs(pathToJson);
+nockDefs.forEach(function(def) {
+//  Do something with the definition object e.g. scope filtering.
+def.options = def.options || {};
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nock.scope.pendingMocks" id="apidoc.element.nock.scope.pendingMocks">
+        function <span class="apidocSignatureSpan">nock.scope.</span>pendingMocks
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function pendingMocks() {
+  return _.flatten(_.map(interceptorScopes(), function(scope) {
+    return scope.pendingMocks();
+  }));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* [Request Headers Matching](#request-headers-matching)
+* [Optional Requests](#optional-requests)
+* [Allow __unmocked__ requests on a mocked hostname](#allow-__unmocked__-requests-on-a-mocked-hostname)
+- [Expectations](#expectations)
+* [.isDone()](#isdone)
+* [.cleanAll()](#cleanall)
+* [.persist()](#persist)
+* [.<span class="apidocCodeKeywordSpan">pendingMocks</span>()](#pendingmocks)
+* [.activeMocks()](#activemocks)
+- [Logging](#logging)
+- [Restoring](#restoring)
+- [Turning Nock Off (experimental!)](#turning-nock-off-experimental)
+- [Enable/Disable real HTTP request](#enabledisable-real-http-request)
+- [Recording](#recording)
+* [`dont_print` option](#dont_print-option)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nock.scope.removeInterceptor" id="apidoc.element.nock.scope.removeInterceptor">
+        function <span class="apidocSignatureSpan">nock.scope.</span>removeInterceptor
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function removeInterceptor(options) {
+  var baseUrl, key, method, proto;
+  if (options instanceof Interceptor) {
+    baseUrl = options.basePath;
+    key = options._key;
+  } else {
+    proto = options.proto ? options.proto : &#x27;http&#x27;;
+
+    common.normalizeRequestOptions(options);
+    baseUrl = proto + &#x27;://&#x27; + options.host;
+    method = options.method &#x26;&#x26; options.method.toUpperCase() || &#x27;GET&#x27;;
+    key = method + &#x27; &#x27; + baseUrl + (options.path || &#x27;/&#x27;);
+  }
+
+  if (allInterceptors[baseUrl] &#x26;&#x26; allInterceptors[baseUrl].scopes.length &#x3e; 0) {
+    if (key) {
+      for (var i = 0; i &#x3c; allInterceptors[baseUrl].scopes.length; i++) {
+        var interceptor = allInterceptors[baseUrl].scopes[i];
+        if (interceptor._key === key) {
+          allInterceptors[baseUrl].scopes.splice(i, 1);
+          interceptor.scope.remove(key, interceptor);
+          break;
+        }
+      }
+    } else {
+      allInterceptors[baseUrl].scopes.length = 0;
+    }
+
+    return true;
+  }
+
+  return false;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+- [Enable/Disable real HTTP request](#enabledisable-real-http-request)
+- [Recording](#recording)
+* [`dont_print` option](#dont_print-option)
+* [`output_objects` option](#output_objects-option)
+* [`enable_reqheaders_recording` option](#enable_reqheaders_recording-option)
+* [`logging` option](#logging-option)
+* [`use_separator` option](#use_separator-option)
+* [.<span class="apidocCodeKeywordSpan">removeInterceptor</span>()](#removeinterceptor)
+- [Events](#events)
+* [Global no match event](#global-no-match-event)
+- [Nock Back](#nock-back)
+* [Setup](#setup)
+  + [Options](#options)
+* [Usage](#usage)
+  + [Options](#options-1)
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.nock.scope.restore" id="apidoc.element.nock.scope.restore">
+        function <span class="apidocSignatureSpan">nock.scope.</span>restore
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function restore() {
+  debug(currentRecordingId, &#x27;restoring all the overridden http/https properties&#x27;);
+
+  common.restoreOverriddenRequests();
+  intercept.restoreOverriddenClientRequest();
+  recordingInProgress = false;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+```
+
+# Restoring
+
+You can restore the HTTP interceptor to the normal unmocked behaviour by calling:
+
+```js
+nock.<span class="apidocCodeKeywordSpan">restore</span>();
+```
+**note**: restore does not clear the interceptor list. Use [nock.cleanAll()](#cleanall) if you expect the interceptor list to be
+ empty.
+
+# Turning Nock Off (experimental!)
+
+You can bypass Nock completely by setting `NOCK_OFF` environment variable to `&#x22;true&#x22;`.
+...</pre></li>
+    </ul>
+
+
+
+
 
 
 </div>
