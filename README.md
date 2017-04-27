@@ -1,6 +1,6 @@
 # npmdoc-nock
 
-#### api documentation for  [nock (v9.0.13)](https://github.com/node-nock/nock#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-nock.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-nock) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-nock.svg)](https://travis-ci.org/npmdoc/node-npmdoc-nock)
+#### basic api documentation for  [nock (v9.0.13)](https://github.com/node-nock/nock#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-nock.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-nock) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-nock.svg)](https://travis-ci.org/npmdoc/node-npmdoc-nock)
 
 #### HTTP Server mocking for Node.js
 
@@ -271,7 +271,8 @@
         "testing",
         "isolation"
     ],
-    "version": "9.0.13"
+    "version": "9.0.13",
+    "bin": {}
 }
 ```
 
