@@ -1181,7 +1181,23 @@
   });
 
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+var wild = {
+
+
+setup: function () {
+  nock.cleanAll();
+  recorder.restore();
+  nock.<span class="apidocCodeKeywordSpan">activate</span>();
+  nock.enableNetConnect();
+},
+
+
+start: function () {
+  return load(); //don&#x27;t load anything but get correct context
+},
+...</pre></li>
     </ul>
 
 
@@ -1199,21 +1215,21 @@
   }));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-* [Optional Requests](#optional-requests)
-* [Allow __unmocked__ requests on a mocked hostname](#allow-__unmocked__-requests-on-a-mocked-hostname)
-- [Expectations](#expectations)
-* [.isDone()](#isdone)
-* [.cleanAll()](#cleanall)
-* [.persist()](#persist)
-* [.pendingMocks()](#pendingmocks)
-* [.<span class="apidocCodeKeywordSpan">activeMocks</span>()](#activemocks)
-- [Logging](#logging)
-- [Restoring](#restoring)
-- [Turning Nock Off (experimental!)](#turning-nock-off-experimental)
-- [Enable/Disable real HTTP request](#enabledisable-real-http-request)
-- [Recording](#recording)
-* [`dont_print` option](#dont_print-option)
-* [`output_objects` option](#output_objects-option)
+* 8.2.0
+* Add changelog to the dev dependencies
+* Ignore browserify-bundle.js
+* Update browserify-bundle.js
+* Merge pull request [#723](https://github.com/node-nock/nock/issues/723) from pimterry/optional-mocks
+  Add optionally() and make isDone and pendingMocks consistent.
+* Include all review markup changes in browserify-bundle
+* Add .<span class="apidocCodeKeywordSpan">activeMocks</span>() to recreate previous .pendingMocks() behaviour
+* Add times+optional and persist+optional tests
+* Document assumption in pendingMocks()
+* Clarify optional mock behaviour a little in README
+* Merge pull request [#721](https://github.com/node-nock/nock/issues/721) from pimterry/removeInterceptor-from-pending
+  Update PendingMocks when an interceptor is removed
+* Merge pull request [#722](https://github.com/node-nock/nock/issues/722) from Ginden/no-garbage-in-npm
+  Removed coverage folder from npm
 ...</pre></li>
     </ul>
 
@@ -1701,21 +1717,21 @@ def.options = def.options || {};
   }));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-* [Request Headers Matching](#request-headers-matching)
-* [Optional Requests](#optional-requests)
-* [Allow __unmocked__ requests on a mocked hostname](#allow-__unmocked__-requests-on-a-mocked-hostname)
-- [Expectations](#expectations)
-* [.isDone()](#isdone)
-* [.cleanAll()](#cleanall)
-* [.persist()](#persist)
-* [.<span class="apidocCodeKeywordSpan">pendingMocks</span>()](#pendingmocks)
-* [.activeMocks()](#activemocks)
-- [Logging](#logging)
-- [Restoring](#restoring)
-- [Turning Nock Off (experimental!)](#turning-nock-off-experimental)
-- [Enable/Disable real HTTP request](#enabledisable-real-http-request)
-- [Recording](#recording)
-* [`dont_print` option](#dont_print-option)
+* 8.2.0
+* Add changelog to the dev dependencies
+* Ignore browserify-bundle.js
+* Update browserify-bundle.js
+* Merge pull request [#723](https://github.com/node-nock/nock/issues/723) from pimterry/optional-mocks
+  Add optionally() and make isDone and pendingMocks consistent.
+* Include all review markup changes in browserify-bundle
+* Add .activeMocks() to recreate previous .<span class="apidocCodeKeywordSpan">pendingMocks</span>() behaviour
+* Add times+optional and persist+optional tests
+* Document assumption in pendingMocks()
+* Clarify optional mock behaviour a little in README
+* Merge pull request [#721](https://github.com/node-nock/nock/issues/721) from pimterry/removeInterceptor-from-pending
+  Update PendingMocks when an interceptor is removed
+* Merge pull request [#722](https://github.com/node-nock/nock/issues/722) from Ginden/no-garbage-in-npm
+  Removed coverage folder from npm
 ...</pre></li>
     </ul>
 
@@ -2971,7 +2987,23 @@ scope(&#x27;http://my.domain.com&#x27;)
   });
 
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+var wild = {
+
+
+setup: function () {
+  nock.cleanAll();
+  recorder.restore();
+  nock.<span class="apidocCodeKeywordSpan">activate</span>();
+  nock.enableNetConnect();
+},
+
+
+start: function () {
+  return load(); //don&#x27;t load anything but get correct context
+},
+...</pre></li>
     </ul>
 
 
@@ -2989,21 +3021,21 @@ scope(&#x27;http://my.domain.com&#x27;)
   }));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-* [Optional Requests](#optional-requests)
-* [Allow __unmocked__ requests on a mocked hostname](#allow-__unmocked__-requests-on-a-mocked-hostname)
-- [Expectations](#expectations)
-* [.isDone()](#isdone)
-* [.cleanAll()](#cleanall)
-* [.persist()](#persist)
-* [.pendingMocks()](#pendingmocks)
-* [.<span class="apidocCodeKeywordSpan">activeMocks</span>()](#activemocks)
-- [Logging](#logging)
-- [Restoring](#restoring)
-- [Turning Nock Off (experimental!)](#turning-nock-off-experimental)
-- [Enable/Disable real HTTP request](#enabledisable-real-http-request)
-- [Recording](#recording)
-* [`dont_print` option](#dont_print-option)
-* [`output_objects` option](#output_objects-option)
+* 8.2.0
+* Add changelog to the dev dependencies
+* Ignore browserify-bundle.js
+* Update browserify-bundle.js
+* Merge pull request [#723](https://github.com/node-nock/nock/issues/723) from pimterry/optional-mocks
+  Add optionally() and make isDone and pendingMocks consistent.
+* Include all review markup changes in browserify-bundle
+* Add .<span class="apidocCodeKeywordSpan">activeMocks</span>() to recreate previous .pendingMocks() behaviour
+* Add times+optional and persist+optional tests
+* Document assumption in pendingMocks()
+* Clarify optional mock behaviour a little in README
+* Merge pull request [#721](https://github.com/node-nock/nock/issues/721) from pimterry/removeInterceptor-from-pending
+  Update PendingMocks when an interceptor is removed
+* Merge pull request [#722](https://github.com/node-nock/nock/issues/722) from Ginden/no-garbage-in-npm
+  Removed coverage folder from npm
 ...</pre></li>
     </ul>
 
@@ -3139,7 +3171,23 @@ nock.enableNetConnect(&#x27;amazon.com&#x27;);
     <li>description and source-code<pre class="apidocCodePre">function isOn() {
   return !isOff();
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Scope.prototype.activeMocks = function activeMocks() {
+  return Object.keys(this.keyedInterceptors);
+}
+
+Scope.prototype.isDone = function isDone() {
+  var self = this;
+  // if nock is turned off, it always says it&#x27;s done
+  if (! globalIntercept.<span class="apidocCodeKeywordSpan">isOn</span>()) { return true; }
+
+  return this.pendingMocks().length === 0;
+};
+
+Scope.prototype.done = function done() {
+  assert.ok(this.isDone(), &#x22;Mocks not yet satisfied:\n&#x22; + this.pendingMocks().join(&#x22;\n&#x22;));
+};
+...</pre></li>
     </ul>
 
 
@@ -3222,21 +3270,21 @@ nock.enableNetConnect(&#x27;amazon.com&#x27;);
   }));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-* [Request Headers Matching](#request-headers-matching)
-* [Optional Requests](#optional-requests)
-* [Allow __unmocked__ requests on a mocked hostname](#allow-__unmocked__-requests-on-a-mocked-hostname)
-- [Expectations](#expectations)
-* [.isDone()](#isdone)
-* [.cleanAll()](#cleanall)
-* [.persist()](#persist)
-* [.<span class="apidocCodeKeywordSpan">pendingMocks</span>()](#pendingmocks)
-* [.activeMocks()](#activemocks)
-- [Logging](#logging)
-- [Restoring](#restoring)
-- [Turning Nock Off (experimental!)](#turning-nock-off-experimental)
-- [Enable/Disable real HTTP request](#enabledisable-real-http-request)
-- [Recording](#recording)
-* [`dont_print` option](#dont_print-option)
+* 8.2.0
+* Add changelog to the dev dependencies
+* Ignore browserify-bundle.js
+* Update browserify-bundle.js
+* Merge pull request [#723](https://github.com/node-nock/nock/issues/723) from pimterry/optional-mocks
+  Add optionally() and make isDone and pendingMocks consistent.
+* Include all review markup changes in browserify-bundle
+* Add .activeMocks() to recreate previous .<span class="apidocCodeKeywordSpan">pendingMocks</span>() behaviour
+* Add times+optional and persist+optional tests
+* Document assumption in pendingMocks()
+* Clarify optional mock behaviour a little in README
+* Merge pull request [#721](https://github.com/node-nock/nock/issues/721) from pimterry/removeInterceptor-from-pending
+  Update PendingMocks when an interceptor is removed
+* Merge pull request [#722](https://github.com/node-nock/nock/issues/722) from Ginden/no-garbage-in-npm
+  Removed coverage folder from npm
 ...</pre></li>
     </ul>
 
@@ -3257,7 +3305,23 @@ nock.enableNetConnect(&#x27;amazon.com&#x27;);
   });
   allInterceptors = {};
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+return this;
+};
+
+
+
+
+function cleanAll() {
+globalIntercept.<span class="apidocCodeKeywordSpan">removeAll</span>();
+return module.exports;
+}
+
+function loadDefs(path) {
+if (! fs) {
+  throw new Error(&#x27;No fs&#x27;);
+}
+...</pre></li>
     </ul>
 
 
@@ -4356,7 +4420,23 @@ You are able to specify the number of milliseconds that the response body should
     <li>description and source-code<pre class="apidocCodePre">function clear() {
   outputs = [];
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+
+var record = {
+
+
+setup: function () {
+  recorder.restore();
+  recorder.<span class="apidocCodeKeywordSpan">clear</span>();
+  nock.cleanAll();
+  nock.activate();
+  nock.disableNetConnect();
+},
+
+
+start: function (fixture, options) {
+...</pre></li>
     </ul>
 
 
@@ -4611,7 +4691,23 @@ Recording relies on intercepting real requests and answers and then persisting t
   });
 
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+var wild = {
+
+
+setup: function () {
+  nock.cleanAll();
+  recorder.restore();
+  nock.<span class="apidocCodeKeywordSpan">activate</span>();
+  nock.enableNetConnect();
+},
+
+
+start: function () {
+  return load(); //don&#x27;t load anything but get correct context
+},
+...</pre></li>
     </ul>
 
 
@@ -4629,21 +4725,21 @@ Recording relies on intercepting real requests and answers and then persisting t
   }));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-* [Optional Requests](#optional-requests)
-* [Allow __unmocked__ requests on a mocked hostname](#allow-__unmocked__-requests-on-a-mocked-hostname)
-- [Expectations](#expectations)
-* [.isDone()](#isdone)
-* [.cleanAll()](#cleanall)
-* [.persist()](#persist)
-* [.pendingMocks()](#pendingmocks)
-* [.<span class="apidocCodeKeywordSpan">activeMocks</span>()](#activemocks)
-- [Logging](#logging)
-- [Restoring](#restoring)
-- [Turning Nock Off (experimental!)](#turning-nock-off-experimental)
-- [Enable/Disable real HTTP request](#enabledisable-real-http-request)
-- [Recording](#recording)
-* [`dont_print` option](#dont_print-option)
-* [`output_objects` option](#output_objects-option)
+* 8.2.0
+* Add changelog to the dev dependencies
+* Ignore browserify-bundle.js
+* Update browserify-bundle.js
+* Merge pull request [#723](https://github.com/node-nock/nock/issues/723) from pimterry/optional-mocks
+  Add optionally() and make isDone and pendingMocks consistent.
+* Include all review markup changes in browserify-bundle
+* Add .<span class="apidocCodeKeywordSpan">activeMocks</span>() to recreate previous .pendingMocks() behaviour
+* Add times+optional and persist+optional tests
+* Document assumption in pendingMocks()
+* Clarify optional mock behaviour a little in README
+* Merge pull request [#721](https://github.com/node-nock/nock/issues/721) from pimterry/removeInterceptor-from-pending
+  Update PendingMocks when an interceptor is removed
+* Merge pull request [#722](https://github.com/node-nock/nock/issues/722) from Ginden/no-garbage-in-npm
+  Removed coverage folder from npm
 ...</pre></li>
     </ul>
 
@@ -5011,21 +5107,21 @@ def.options = def.options || {};
   }));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-* [Request Headers Matching](#request-headers-matching)
-* [Optional Requests](#optional-requests)
-* [Allow __unmocked__ requests on a mocked hostname](#allow-__unmocked__-requests-on-a-mocked-hostname)
-- [Expectations](#expectations)
-* [.isDone()](#isdone)
-* [.cleanAll()](#cleanall)
-* [.persist()](#persist)
-* [.<span class="apidocCodeKeywordSpan">pendingMocks</span>()](#pendingmocks)
-* [.activeMocks()](#activemocks)
-- [Logging](#logging)
-- [Restoring](#restoring)
-- [Turning Nock Off (experimental!)](#turning-nock-off-experimental)
-- [Enable/Disable real HTTP request](#enabledisable-real-http-request)
-- [Recording](#recording)
-* [`dont_print` option](#dont_print-option)
+* 8.2.0
+* Add changelog to the dev dependencies
+* Ignore browserify-bundle.js
+* Update browserify-bundle.js
+* Merge pull request [#723](https://github.com/node-nock/nock/issues/723) from pimterry/optional-mocks
+  Add optionally() and make isDone and pendingMocks consistent.
+* Include all review markup changes in browserify-bundle
+* Add .activeMocks() to recreate previous .<span class="apidocCodeKeywordSpan">pendingMocks</span>() behaviour
+* Add times+optional and persist+optional tests
+* Document assumption in pendingMocks()
+* Clarify optional mock behaviour a little in README
+* Merge pull request [#721](https://github.com/node-nock/nock/issues/721) from pimterry/removeInterceptor-from-pending
+  Update PendingMocks when an interceptor is removed
+* Merge pull request [#722](https://github.com/node-nock/nock/issues/722) from Ginden/no-garbage-in-npm
+  Removed coverage folder from npm
 ...</pre></li>
     </ul>
 
